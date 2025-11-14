@@ -3,77 +3,150 @@ import { StoryNode } from '@/types/game';
 export const storyNodes: Record<string, StoryNode> = {
   start: {
     id: 'start',
-    text: `Era uma sexta-feira qualquer até o momento em que a notificação iluminou a tela do seu celular:
+    text: `Era uma sexta-feira qualquer até o momento em que a notificação iluminou a tela do seu celular.
+
+A luz branca do visor cortou a escuridão do quarto. Você pegou o telefone com mãos trêmulas.
 
 "Ele sabe de tudo. Ainda há tempo para se salvar."
 
-Por um instante, você achou que fosse spam. Mas o nome *Rafael* piscando logo abaixo da próxima mensagem gelou seu sangue. Era o nome dele. E a mensagem anônima... quem mais saberia?
+Por um instante, você achou que fosse spam. Algum golpe elaborado. Mas então veio a segunda mensagem:
 
-Seu coração dispara. Sua respiração fica pesada. O que você faz?`,
+"Rafael não é quem você pensa. Corra."
+
+O nome dele. *Rafael*. Seu coração gelou. Quem mais saberia? Quem mais teria esse número?
+
+Seus dedos tremem sobre a tela. O quarto parece menor. O ar, mais pesado. Você sente os olhos de alguém - ou algo - observando você no escuro.
+
+O que você faz?`,
     choices: [
-      { text: '🚫 Ignorar e seguir a vida normalmente', nextNode: 'reason1', icon: '🧠' },
-      { text: '🔮 Buscar respostas místicas', nextNode: 'destiny1', icon: '✨' },
-      { text: '🔍 Investigar quem enviou a mensagem', nextNode: 'truth1', icon: '🎯' }
+      { text: 'Ignorar e seguir a vida normalmente', nextNode: 'reason1' },
+      { text: 'Buscar respostas em lugares místicos', nextNode: 'destiny1' },
+      { text: 'Investigar quem enviou a mensagem', nextNode: 'truth1' }
     ],
-    animation: 'fade-in'
+    animation: 'fade-in',
+    sound: 'notification'
   },
 
   // CAMINHO DA RAZÃO
   reason1: {
     id: 'reason1',
-    text: `Você decide fingir que nada aconteceu. Rafael te espera naquela noite, e você não quer transformar o que têm em mais uma paranoia.
+    text: `Você decide fingir que nada aconteceu. Apaga as mensagens. Bloqueia o número desconhecido.
 
-Mas conforme as horas passam, você começa a notar: mensagens apagadas, ligações recusadas, silêncios longos demais.
+Rafael te espera naquela noite. Jantar. Flores. Promessas. Você sorri. Ele sorri de volta. Mas há algo nos olhos dele - algo que você nunca viu antes.
 
-Dias depois, um novo número envia:
-"Ele está te vigiando."
+"Está tudo bem?", ele pergunta.
 
-Você apaga. Desativa notificações. Mas o espelho denuncia: você já não é a mesma pessoa.
+"Está", você mente.
 
-Naquela noite chuvosa, você decide ir até a casa de Rafael...`,
+Os dias passam. Você tenta esquecer. Mas as coisas começam a mudar: mensagens apagadas no seu celular, ligações que você não fez no histórico, silêncios longos demais quando você entra na sala.
+
+Uma noite, você acorda às 3h da manhã. Rafael não está na cama. Você o encontra na sala, no escuro, olhando fixamente para o celular dele. A luz azul ilumina seu rosto. Ele não percebe você ali.
+
+Então chega outra mensagem:
+
+"Ele está te vigiando. Cada passo. Cada respiração. Você ainda tem tempo."
+
+Você apaga. Desativa notificações. Mas quando olha no espelho, não se reconhece mais. O medo mudou você.
+
+Naquela noite chuvosa, você decide que precisa saber a verdade...`,
     choices: [
-      { text: '🏠 Ir até a casa dele', nextNode: 'reason2', icon: '⚠️' },
-      { text: '📱 Ligar para ele primeiro', nextNode: 'reason3', icon: '☎️' }
+      { text: 'Ir até a casa dele sem avisar', nextNode: 'reason2' },
+      { text: 'Ligar para ele primeiro', nextNode: 'reason3' }
     ],
-    animation: 'fade-in'
+    animation: 'fade-in',
+    sound: 'suspense'
   },
 
   reason2: {
     id: 'reason2',
-    text: `A rua está escura. O vento traz o som distante de um trovão.
+    text: `A chuva cai pesada. Cada gota parece um tambor anunciando o inevitável.
 
-Quando você toca a campainha, é Lívia quem abre a porta.
+A rua está deserta. Os postes piscam. Um. Dois. Apagam. Você continua andando.
 
-Os olhos dela estão vermelhos - como se tivesse chorado a noite inteira.
+A casa dele está escura. Apenas uma janela iluminada no segundo andar. Uma sombra se move atrás da cortina.
 
-Ela apenas sussurra: "Você veio. Ele te esperava."
+Você toca a campainha. Uma vez. Ninguém atende.
 
-Antes que você possa responder, o som de um disparo ecoa pela casa.
+Duas vezes. Três.
+
+A porta se abre lentamente. Rangendo. Como em um filme de terror barato - mas isso é real. Dolorosamente real.
+
+É Lívia quem está ali. A irmã dele. Ou prima? Você nunca soube ao certo.
+
+Os olhos dela estão vermelhos, inchados - como se tivesse chorado por dias. O rímel escorrido desenha linhas negras no rosto pálido.
+
+Ela não diz nada. Apenas te olha. Depois sussurra, com a voz quebrada:
+
+"Você veio. Ele disse que você viria. Ele te esperava."
+
+Antes que você possa perguntar qualquer coisa, antes que possa respirar, um som seco ecoa pela casa.
+
+Um disparo.
+
+Seus ouvidos zunem. Lívia olha para você com olhos arregalados. Depois, lentamente, olha para baixo.
+
+A mancha vermelha se espalha pela blusa branca dela.
+
+Ela cai.
+
+Você ouve passos. Lentos. Calculados. Vindo das escadas.
 
 Tudo escurece.`,
     isEnding: true,
     endingType: 'tragic',
-    animation: 'fade-out'
+    animation: 'fade-out',
+    sound: 'jumpscare'
   },
 
   reason3: {
     id: 'reason3',
-    text: `O telefone toca. Uma vez. Duas. Três.
+    text: `Seus dedos tremem enquanto discam o número dele.
 
-"Alô?" A voz de Rafael soa estranha. Distante.
+O telefone toca. Uma vez. O som parece ecoar no vazio.
+
+Duas vezes. Você quase desliga.
+
+Três vezes. Seu coração bate mais forte a cada toque.
+
+"Alô?" A voz de Rafael finalmente responde. Mas soa estranha. Distante. Como se viesse de outro mundo.
 
 "Oi, eu... precisava ouvir sua voz."
 
-Silêncio. Então ele diz: "Você não devia ter ligado. Agora ela sabe."
+Silêncio do outro lado. Você pode ouvir uma respiração pesada. Não é dele. Ou é?
 
-"Quem sabe? Do que você está falando?"
+"Rafael?"
 
-A ligação cai. Você tenta ligar de volta. O número não existe mais.
+"Você não devia ter ligado." A voz dele é fria agora. Quase robótica. "Agora ela sabe."
 
-No dia seguinte, Rafael desapareceu sem deixar vestígios.`,
+Seu estômago se contrai. "Quem sabe? Do que você está falando?"
+
+"Você entenderá em breve. Ou talvez não. Tanto faz."
+
+"Rafael, você está me assustando—"
+
+A ligação cai. Um bip agudo. Depois, silêncio.
+
+Você tenta ligar de volta imediatamente. Três toques. Uma mensagem automática:
+
+"O número que você discou não existe."
+
+Impossível. Você acabou de falar com ele.
+
+Você tenta de novo. E de novo. E de novo.
+
+"O número que você discou não existe."
+
+No dia seguinte, você vai até a casa dele. Vazia. Mobília coberta. Como se ninguém tivesse morado ali por anos.
+
+Os vizinhos dizem que a casa está abandonada há meses.
+
+Rafael desapareceu sem deixar vestígios.
+
+Ou ele nunca existiu?`,
     isEnding: true,
     endingType: 'mysterious',
-    animation: 'fade-out'
+    animation: 'fade-out',
+    sound: 'suspense'
   },
 
   // CAMINHO DO DESTINO
@@ -81,23 +154,34 @@ No dia seguinte, Rafael desapareceu sem deixar vestígios.`,
     id: 'destiny1',
     text: `Você entra em um fórum antigo chamado "Cartas do Amanhã".
 
-Layout tosco, fundo negro, um botão piscando: "Vire as cartas. Descubra o que te espera."
+Layout tosco. Anos 90. Fundo negro. Um botão piscando em vermelho: "Vire as cartas. Descubra o que te espera."
 
-Você clica.
+Sua mão treme sobre o mouse. Você clica.
 
-Primeira carta: **A Torre** - ruína e revelação.
-Segunda carta: **Os Amantes** - escolha e culpa.
-Terceira carta: **A Morte** - transformação inevitável.
+A tela pisca. Uma carta surge, girando lentamente:
 
-Uma voz digital ecoa: "O perigo já está dentro da casa."
+**A Torre** - ruína e revelação. A imagem mostra uma construção desabando em chamas.
 
-Você olha para trás. A luz pisca. Seu reflexo no espelho pisca junto - mas o espelho mostra algo mais...`,
+Segunda carta: **Os Amantes** - escolha e culpa. Duas figuras de costas uma para a outra.
+
+Terceira carta: **A Morte** - transformação inevitável. Um esqueleto montado em um cavalo branco.
+
+Uma voz digital ecoa pelos seus fones de ouvido - você não se lembra de ter colocado nada:
+
+"O perigo já está dentro da casa."
+
+Você arranca os fones. Mas a voz continua. Dentro da sua cabeça.
+
+Você olha para trás. A luz do quarto pisca. Apaga. Acende. Apaga.
+
+Seu reflexo no espelho pisca junto - mas há algo errado. O reflexo se move sozinho...`,
     choices: [
-      { text: '💻 Encerrar a sessão imediatamente', nextNode: 'destiny2', icon: '🚪' },
-      { text: '🔮 Pedir ajuda à Cartomante Virtual', nextNode: 'destiny3', icon: '🤖' },
-      { text: '🪞 Olhar o reflexo mais de perto', nextNode: 'destiny4', icon: '👁️' }
+      { text: 'Encerrar a sessão imediatamente', nextNode: 'destiny2' },
+      { text: 'Pedir ajuda à Cartomante Virtual', nextNode: 'destiny3' },
+      { text: 'Olhar o reflexo mais de perto', nextNode: 'destiny4' }
     ],
-    animation: 'scale-in'
+    animation: 'scale-in',
+    sound: 'heartbeat'
   },
 
   destiny2: {
@@ -148,8 +232,8 @@ Então, seu reflexo fala:
 
 O reflexo estende a mão. "Toque o espelho. Eu te mostro o que realmente aconteceu."`,
     choices: [
-      { text: '✋ Tocar o espelho', nextNode: 'destiny5', icon: '🪞' },
-      { text: '🏃 Fugir da casa', nextNode: 'destiny6', icon: '💨' }
+      { text: 'Tocar o espelho', nextNode: 'destiny5' },
+      { text: 'Fugir da casa', nextNode: 'destiny6' }
     ],
     animation: 'scale-in'
   },
@@ -204,9 +288,9 @@ De repente, ela te liga:
 
 Sua voz treme. Há urgência. Medo?`,
     choices: [
-      { text: '☕ Encontrar ela no café', nextNode: 'truth2', icon: '🤝' },
-      { text: '🏠 Ir direto na casa de Rafael', nextNode: 'truth3', icon: '🎯' },
-      { text: '📱 Confrontá-la por mensagem', nextNode: 'truth4', icon: '💬' }
+      { text: 'Encontrar ela no café', nextNode: 'truth2' },
+      { text: 'Ir direto na casa de Rafael', nextNode: 'truth3' },
+      { text: 'Confrontá-la por mensagem', nextNode: 'truth4' }
     ],
     animation: 'fade-in'
   },
@@ -223,8 +307,8 @@ Ela desliza um envelope pela mesa. "Tudo está aqui. Fotos. Conversas. Provas."
 
 Você abre. Seu mundo desmorona. Cada página é uma nova revelação devastadora.`,
     choices: [
-      { text: '😢 Confrontar Rafael', nextNode: 'truth5', icon: '⚔️' },
-      { text: '🚶 Simplesmente ir embora', nextNode: 'truth6', icon: '🌅' }
+      { text: 'Confrontar Rafael', nextNode: 'truth5' },
+      { text: 'Simplesmente ir embora', nextNode: 'truth6' }
     ],
     animation: 'scale-in'
   },
@@ -245,8 +329,8 @@ Não é uma pergunta. É uma confirmação.
 
 Ele suspira. "Entre. Você merece saber a verdade toda. Mas vai doer."`,
     choices: [
-      { text: '👂 Ouvir a verdade dele', nextNode: 'truth7', icon: '🗣️' },
-      { text: '🚫 Recusar e sair', nextNode: 'truth8', icon: '❌' }
+      { text: 'Ouvir a verdade dele', nextNode: 'truth7' },
+      { text: 'Recusar e sair', nextNode: 'truth8' }
     ],
     animation: 'fade-in'
   },

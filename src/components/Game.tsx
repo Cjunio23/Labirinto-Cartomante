@@ -3,8 +3,14 @@ import { storyNodes } from '@/data/storyNodes';
 import { GameState } from '@/types/game';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { soundEffects } from '@/utils/soundEffects';
+import StartScreen from './StartScreen';
+import CreditsScreen from './CreditsScreen';
+
+type GameScreen = 'start' | 'playing' | 'credits';
 
 const Game = () => {
+  const [screen, setScreen] = useState<GameScreen>('start');
   const [gameState, setGameState] = useState<GameState>({
     currentNode: 'start',
     history: [],
@@ -18,13 +24,28 @@ const Game = () => {
   const currentNode = storyNodes[gameState.currentNode];
 
   useEffect(() => {
+    if (screen !== 'playing') return;
+
     setIsTyping(true);
     setShowChoices(false);
     setDisplayedText('');
 
+    // Play sound effect based on node
+    if (currentNode.sound === 'notification') {
+      soundEffects.playNotification();
+    } else if (currentNode.sound === 'suspense') {
+      soundEffects.playSuspense();
+    } else if (currentNode.sound === 'jumpscare') {
+      setTimeout(() => soundEffects.playJumpscare(), 1000);
+    } else if (currentNode.sound === 'heartbeat') {
+      soundEffects.playHeartbeat();
+    } else {
+      soundEffects.playAmbient();
+    }
+
     let index = 0;
     const text = currentNode.text;
-    const typingSpeed = 30;
+    const typingSpeed = 25;
 
     const timer = setInterval(() => {
       if (index < text.length) {
@@ -32,15 +53,18 @@ const Game = () => {
         index++;
       } else {
         setIsTyping(false);
-        setShowChoices(true);
+        if (!currentNode.isEnding) {
+          setShowChoices(true);
+        }
         clearInterval(timer);
       }
     }, typingSpeed);
 
     return () => clearInterval(timer);
-  }, [currentNode]);
+  }, [currentNode, screen]);
 
   const handleChoice = (nextNode: string) => {
+    soundEffects.playChoice();
     setGameState({
       ...gameState,
       currentNode: nextNode,
@@ -48,12 +72,24 @@ const Game = () => {
     });
   };
 
+  const handleStart = () => {
+    soundEffects.playChoice();
+    setScreen('playing');
+  };
+
   const restartGame = () => {
+    soundEffects.playChoice();
     setGameState({
       currentNode: 'start',
       history: [],
       startTime: Date.now()
     });
+    setScreen('start');
+  };
+
+  const goToCredits = () => {
+    soundEffects.playChoice();
+    setScreen('credits');
   };
 
   const getEndingMessage = () => {
@@ -91,70 +127,73 @@ const Game = () => {
     }
   };
 
-  const elapsedTime = Math.floor((Date.now() - gameState.startTime) / 1000);
-  const minutes = Math.floor(elapsedTime / 60);
-  const seconds = elapsedTime % 60;
+  if (screen === 'start') {
+    return <StartScreen onStart={handleStart} />;
+  }
+
+  if (screen === 'credits') {
+    return <CreditsScreen onRestart={restartGame} />;
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-foreground p-4 overflow-hidden relative">
+    <div className="min-h-screen bg-gradient-to-br from-black via-red-950/10 to-black text-foreground p-4 overflow-hidden relative">
       {/* Animated background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse top-0 -left-48" />
-        <div className="absolute w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse bottom-0 -right-48 animation-delay-2000" />
+        <div className="absolute w-96 h-96 bg-red-900/5 rounded-full blur-3xl animate-pulse top-0 -left-48" />
+        <div className="absolute w-96 h-96 bg-purple-900/5 rounded-full blur-3xl animate-pulse bottom-0 -right-48 animation-delay-2000" />
       </div>
 
       <div className="max-w-4xl mx-auto relative z-10">
-        {/* Header */}
+        {/* Header - sem tempo */}
         <div className="text-center mb-8 animate-fade-in">
-          <h1 className="text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 animate-pulse">
+          <h1 className="text-5xl font-bold mb-2 text-red-100 drop-shadow-[0_0_30px_rgba(220,38,38,0.2)]">
             O Labirinto das Palavras Perdidas
           </h1>
-          <p className="text-muted-foreground text-sm">
-            Tempo: {minutes}:{seconds.toString().padStart(2, '0')}
-          </p>
         </div>
 
         {/* Story Card */}
-        <Card className={`p-8 mb-6 bg-gradient-to-br ${currentNode.isEnding ? getEndingMessage().color : 'from-slate-900/80 to-slate-800/80'} border-purple-500/30 backdrop-blur-sm shadow-2xl shadow-purple-500/20 animate-scale-in`}>
+        <Card className={`p-8 mb-6 bg-gradient-to-br ${currentNode.isEnding ? getEndingMessage().color : 'from-black/90 to-slate-900/80'} border-red-900/30 backdrop-blur-sm shadow-2xl shadow-red-900/20 animate-scale-in`}>
           <div className="prose prose-invert max-w-none">
             <p className="text-lg leading-relaxed whitespace-pre-line font-light text-gray-100">
               {displayedText}
-              {isTyping && <span className="animate-pulse">▊</span>}
+              {isTyping && <span className="animate-pulse text-red-400">▊</span>}
             </p>
           </div>
 
           {currentNode.isEnding && !isTyping && (
-            <div className="mt-8 text-center animate-fade-in border-t border-purple-500/30 pt-6">
-              <h2 className="text-3xl font-bold mb-2 text-purple-300">{getEndingMessage().title}</h2>
-              <p className="text-muted-foreground mb-4 italic">{getEndingMessage().message}</p>
-              <p className="text-sm text-gray-400 mb-6">
-                Você jogou por {minutes} minutos e {seconds} segundos
-              </p>
-              <Button
-                onClick={restartGame}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-purple-500/50 transition-all hover:scale-105"
-              >
-                🔄 Jogar Novamente
-              </Button>
+            <div className="mt-8 text-center animate-fade-in border-t border-red-900/30 pt-6">
+              <h2 className="text-3xl font-bold mb-2 text-red-300">{getEndingMessage().title}</h2>
+              <p className="text-muted-foreground mb-6 italic">{getEndingMessage().message}</p>
+              <div className="flex gap-4 justify-center">
+                <Button
+                  onClick={restartGame}
+                  className="bg-gradient-to-r from-red-900 to-red-950 hover:from-red-800 hover:to-red-900 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-red-900/50 transition-all hover:scale-105"
+                >
+                  🔄 Jogar Novamente
+                </Button>
+                <Button
+                  onClick={goToCredits}
+                  className="bg-gradient-to-r from-purple-900 to-purple-950 hover:from-purple-800 hover:to-purple-900 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-purple-900/50 transition-all hover:scale-105"
+                >
+                  📜 Créditos
+                </Button>
+              </div>
             </div>
           )}
         </Card>
 
-        {/* Choices */}
+        {/* Choices - SEM ÍCONES */}
         {!currentNode.isEnding && showChoices && currentNode.choices && (
           <div className="space-y-4 animate-fade-in">
             {currentNode.choices.map((choice, index) => (
               <Button
                 key={index}
                 onClick={() => handleChoice(choice.nextNode)}
-                className="w-full p-6 text-left bg-gradient-to-r from-slate-800/50 to-slate-700/50 hover:from-purple-900/50 hover:to-pink-900/50 border border-purple-500/30 hover:border-purple-400 transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/30 text-base group"
+                className="w-full p-6 text-left bg-gradient-to-r from-slate-900/50 to-slate-800/50 hover:from-red-900/50 hover:to-red-950/50 border border-red-900/30 hover:border-red-700 transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-red-900/30 text-base group"
                 variant="outline"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <span className="text-2xl mr-3 group-hover:scale-125 transition-transform inline-block">
-                  {choice.icon || '→'}
-                </span>
-                <span className="text-gray-100 group-hover:text-purple-200 transition-colors">
+                <span className="text-gray-100 group-hover:text-red-200 transition-colors">
                   {choice.text}
                 </span>
               </Button>
@@ -164,8 +203,8 @@ const Game = () => {
 
         {/* Footer hint */}
         {!currentNode.isEnding && (
-          <div className="text-center mt-8 text-muted-foreground text-sm animate-pulse">
-            Cada escolha molda seu destino...
+          <div className="text-center mt-8 text-red-300/50 text-sm animate-pulse">
+            Cada escolha tem consequências...
           </div>
         )}
       </div>
