@@ -10,17 +10,23 @@ import gameBackground from '@/assets/game-background.jpg';
 import sceneRain from '@/assets/scene-rain.jpg';
 import sceneTarot from '@/assets/scene-tarot.jpg';
 import sceneHouse from '@/assets/scene-house.jpg';
+import sceneBedroom from '@/assets/scene-bedroom.jpg';
+import sceneDinner from '@/assets/scene-dinner.jpg';
+import sceneCafe from '@/assets/scene-cafe.jpg';
+import sceneMirror from '@/assets/scene-mirror.jpg';
+import sceneStreet from '@/assets/scene-street.jpg';
+import scenePhone from '@/assets/scene-phone.jpg';
 
 const getSceneImage = (nodeId: string): string => {
-  if (nodeId.includes('reason2') || nodeId.includes('reason3')) {
-    return sceneRain;
-  }
-  if (nodeId.includes('destiny')) {
-    return sceneTarot;
-  }
-  if (nodeId.includes('truth2') || nodeId.includes('truth3')) {
-    return sceneHouse;
-  }
+  if (nodeId === 'start') return sceneBedroom;
+  if (nodeId.includes('reason1') && !nodeId.includes('reason2') && !nodeId.includes('reason3')) return sceneDinner;
+  if (nodeId.includes('reason2') || nodeId.includes('reason3')) return sceneRain;
+  if (nodeId.includes('destiny4') || nodeId.includes('destiny5') || nodeId.includes('destiny6')) return sceneMirror;
+  if (nodeId.includes('destiny')) return sceneTarot;
+  if (nodeId.includes('truth2')) return sceneCafe;
+  if (nodeId.includes('truth3') || nodeId.includes('truth7') || nodeId.includes('truth8')) return sceneHouse;
+  if (nodeId.includes('truth6')) return sceneStreet;
+  if (nodeId.includes('truth4')) return scenePhone;
   return gameBackground;
 };
 
