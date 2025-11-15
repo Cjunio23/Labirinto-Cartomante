@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import startScreenBg from '@/assets/start-screen.jpg';
 
 interface StartScreenProps {
   onStart: () => void;
@@ -7,12 +8,15 @@ interface StartScreenProps {
 
 const StartScreen = ({ onStart }: StartScreenProps) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-red-950/20 to-black text-foreground flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Efeitos de fundo animados */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute w-96 h-96 bg-red-900/5 rounded-full blur-3xl animate-pulse top-0 left-1/4" />
-        <div className="absolute w-96 h-96 bg-purple-900/5 rounded-full blur-3xl animate-pulse bottom-0 right-1/4 animation-delay-2000" />
-      </div>
+    <div 
+      className="min-h-screen text-foreground flex items-center justify-center p-4 relative overflow-hidden"
+      style={{
+        backgroundImage: `url(${startScreenBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
 
       <Card className="max-w-2xl w-full p-12 bg-black/80 border-red-900/30 backdrop-blur-sm shadow-2xl shadow-red-900/20 relative z-10 animate-fade-in">
         <div className="text-center space-y-8">
