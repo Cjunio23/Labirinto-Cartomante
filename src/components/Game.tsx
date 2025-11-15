@@ -6,6 +6,23 @@ import { Card } from '@/components/ui/card';
 import { soundEffects } from '@/utils/soundEffects';
 import StartScreen from './StartScreen';
 import CreditsScreen from './CreditsScreen';
+import gameBackground from '@/assets/game-background.jpg';
+import sceneRain from '@/assets/scene-rain.jpg';
+import sceneTarot from '@/assets/scene-tarot.jpg';
+import sceneHouse from '@/assets/scene-house.jpg';
+
+const getSceneImage = (nodeId: string): string => {
+  if (nodeId.includes('reason2') || nodeId.includes('reason3')) {
+    return sceneRain;
+  }
+  if (nodeId.includes('destiny')) {
+    return sceneTarot;
+  }
+  if (nodeId.includes('truth2') || nodeId.includes('truth3')) {
+    return sceneHouse;
+  }
+  return gameBackground;
+};
 
 type GameScreen = 'start' | 'playing' | 'credits';
 
@@ -135,13 +152,18 @@ const Game = () => {
     return <CreditsScreen onRestart={restartGame} />;
   }
 
+  const backgroundImage = getSceneImage(currentNode.id);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-red-950/10 to-black text-foreground p-4 overflow-hidden relative">
-      {/* Animated background effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute w-96 h-96 bg-red-900/5 rounded-full blur-3xl animate-pulse top-0 -left-48" />
-        <div className="absolute w-96 h-96 bg-purple-900/5 rounded-full blur-3xl animate-pulse bottom-0 -right-48 animation-delay-2000" />
-      </div>
+    <div 
+      className="min-h-screen text-foreground p-4 overflow-hidden relative transition-all duration-1000"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
 
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Header - sem tempo */}

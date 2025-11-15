@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import creditsBg from '@/assets/credits-background.jpg';
 
 interface CreditsScreenProps {
   onRestart: () => void;
@@ -7,11 +8,15 @@ interface CreditsScreenProps {
 
 const CreditsScreen = ({ onRestart }: CreditsScreenProps) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-purple-950/20 to-black text-foreground flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Efeitos de fundo */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute w-96 h-96 bg-purple-900/5 rounded-full blur-3xl animate-pulse top-1/4 left-1/3" />
-      </div>
+    <div 
+      className="min-h-screen text-foreground flex items-center justify-center p-4 relative overflow-hidden"
+      style={{
+        backgroundImage: `url(${creditsBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" />
 
       <Card className="max-w-2xl w-full p-12 bg-black/90 border-purple-900/30 backdrop-blur-sm shadow-2xl shadow-purple-900/20 relative z-10 animate-fade-in">
         <div className="text-center space-y-8">
