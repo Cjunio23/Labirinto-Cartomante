@@ -16,17 +16,42 @@ import sceneCafe from '@/assets/scene-cafe.jpg';
 import sceneMirror from '@/assets/scene-mirror.jpg';
 import sceneStreet from '@/assets/scene-street.jpg';
 import scenePhone from '@/assets/scene-phone.jpg';
+import sceneWarehouse from '@/assets/scene-warehouse.jpg';
+import sceneHospital from '@/assets/scene-hospital.jpg';
+import sceneForest from '@/assets/scene-forest.jpg';
+import sceneCemetery from '@/assets/scene-cemetery.jpg';
+import sceneBasement from '@/assets/scene-basement.jpg';
+import sceneParking from '@/assets/scene-parking.jpg';
+import sceneLibrary from '@/assets/scene-library.jpg';
+import sceneSubway from '@/assets/scene-subway.jpg';
 
 const getSceneImage = (nodeId: string): string => {
   if (nodeId === 'start') return sceneBedroom;
+  
+  // Caminho da Razão - cenas específicas
+  if (nodeId === 'reason1a' || nodeId === 'reason1b' || nodeId === 'reason1c') return sceneHouse;
+  if (nodeId.includes('reason1a1') || nodeId.includes('reason1a2') || nodeId.includes('basement')) return sceneBasement;
+  if (nodeId.includes('reason1b')) return sceneLibrary;
   if (nodeId.includes('reason1') && !nodeId.includes('reason2') && !nodeId.includes('reason3')) return sceneDinner;
   if (nodeId.includes('reason2') || nodeId.includes('reason3')) return sceneRain;
+  
+  // Caminho do Destino - cenas místicas
+  if (nodeId.includes('destiny1a1') || nodeId.includes('destiny1a2')) return sceneForest;
+  if (nodeId.includes('destiny1a3')) return sceneCemetery;
+  if (nodeId.includes('destiny1b')) return sceneSubway;
+  if (nodeId.includes('destiny1c')) return sceneMirror;
   if (nodeId.includes('destiny4') || nodeId.includes('destiny5') || nodeId.includes('destiny6')) return sceneMirror;
   if (nodeId.includes('destiny')) return sceneTarot;
+  
+  // Caminho da Verdade - investigação
+  if (nodeId.includes('truth1a')) return sceneCafe;
+  if (nodeId.includes('truth1b')) return sceneWarehouse;
+  if (nodeId.includes('truth1c')) return sceneParking;
   if (nodeId.includes('truth2')) return sceneCafe;
   if (nodeId.includes('truth3') || nodeId.includes('truth7') || nodeId.includes('truth8')) return sceneHouse;
   if (nodeId.includes('truth6')) return sceneStreet;
   if (nodeId.includes('truth4')) return scenePhone;
+  
   return gameBackground;
 };
 
@@ -180,7 +205,7 @@ const Game = () => {
         </div>
 
         {/* Story Card */}
-        <Card className={`p-8 mb-6 bg-gradient-to-br ${currentNode.isEnding ? getEndingMessage().color : 'from-black/90 to-slate-900/80'} border-red-900/30 backdrop-blur-sm shadow-2xl shadow-red-900/20 animate-scale-in`}>
+        <Card className={`p-8 mb-6 bg-gradient-to-br ${currentNode.isEnding ? getEndingMessage().color : 'from-black/95 to-slate-900/90'} border-red-900/40 backdrop-blur-md shadow-2xl shadow-red-900/30 animate-scale-in transition-all duration-500`}>
           <div className="prose prose-invert max-w-none">
             <p className="text-lg leading-relaxed whitespace-pre-line font-light text-gray-100">
               {displayedText}
@@ -217,11 +242,12 @@ const Game = () => {
               <Button
                 key={index}
                 onClick={() => handleChoice(choice.nextNode)}
-                className="w-full p-6 text-left bg-gradient-to-r from-slate-900/50 to-slate-800/50 hover:from-red-900/50 hover:to-red-950/50 border border-red-900/30 hover:border-red-700 transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-red-900/30 text-base group"
+                className="w-full p-6 text-left bg-gradient-to-r from-slate-900/60 to-slate-800/60 hover:from-red-900/60 hover:to-red-950/60 border-2 border-red-900/40 hover:border-red-600 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-red-900/40 text-base group relative overflow-hidden"
                 variant="outline"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <span className="text-gray-100 group-hover:text-red-200 transition-colors">
+                <div className="absolute inset-0 bg-gradient-to-r from-red-900/0 via-red-600/10 to-red-900/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                <span className="text-gray-100 group-hover:text-red-200 transition-colors relative z-10">
                   {choice.text}
                 </span>
               </Button>
