@@ -561,7 +561,7 @@ Rafael desapareceu sem deixar vestígios. Ou ele nunca existiu?`,
     sound: 'ambient'
   },
 
-  // CAMINHO DO DESTINO
+  // CAMINHO DO DESTINO - EXPANDIDO
   destiny1: {
     id: 'destiny1',
     text: `Você entra em um fórum chamado "Cartas do Amanhã".
@@ -574,12 +574,316 @@ Você arranca os fones. Mas a voz continua. Dentro da sua cabeça.
 
 Seu reflexo no espelho pisca - mas há algo errado. O reflexo se move sozinho...`,
     choices: [
-      { text: 'Encerrar a sessão imediatamente', nextNode: 'destiny2' },
-      { text: 'Pedir ajuda à Cartomante Virtual', nextNode: 'destiny3' },
+      { text: 'Encerrar a sessão imediatamente', nextNode: 'destiny1a' },
+      { text: 'Pedir ajuda à Cartomante Virtual', nextNode: 'destiny1b' },
       { text: 'Olhar o reflexo mais de perto', nextNode: 'destiny4' }
     ],
     animation: 'scale-in',
+    sound: 'notification'
+  },
+
+  destiny1a: {
+    id: 'destiny1a',
+    text: `Você fecha o navegador com força. O coração bate acelerado.
+
+Mas quando olha para o espelho da sala, vê algo impossível: uma mensagem escrita com vapor, como se alguém tivesse respirado sobre o vidro:
+
+"Fechar os olhos não apaga o que já foi visto."
+
+O telefone toca. Número desconhecido. Você atende.
+
+"Boa noite", diz uma voz feminina, suave mas perturbadora. "Meu nome é Cassandra. Sou uma cartomante. Você me procurou, lembra?"
+
+"Eu não procurei ninguém."
+
+"Não conscientemente. Mas seu espírito sim. Ele sabe que está em perigo."
+
+Você ouve Rafael chegando. A voz sussurra: "Não deixe ele saber que falamos."`,
+    choices: [
+      { text: 'Desligar e fingir normalidade', nextNode: 'destiny1a1' },
+      { text: 'Continuar a conversa em segredo', nextNode: 'destiny1a2' },
+      { text: 'Confrontar Rafael sobre tudo', nextNode: 'destiny_confrontation' }
+    ],
+    animation: 'fade-in',
     sound: 'heartbeat'
+  },
+
+  destiny1a1: {
+    id: 'destiny1a1',
+    text: `Você desliga. Rafael entra com um sorriso e vinho.
+
+"Pensei em uma noite especial", ele diz, mas há algo nos olhos dele. Uma intensidade nova.
+
+Durante o jantar, você percebe: ele está estudando você. Cada movimento. Cada expressão.
+
+"Você parece diferente hoje", ele comenta.
+
+"Diferente como?"
+
+"Assustada. Como se tivesse visto um fantasma."
+
+O telefone vibra na sua mão. Mensagem de número desconhecido: "Ele sabe. As cartas nunca mentem. Corra. AGORA."
+
+Rafael inclina a cabeça. "Quem te mandou mensagem?"`,
+    choices: [
+      { text: 'Mostrar a mensagem para ele', nextNode: 'destiny1a1_show' },
+      { text: 'Mentir dizendo que é trabalho', nextNode: 'destiny1a1_lie' },
+      { text: 'Sair correndo da casa', nextNode: 'destiny_escape' }
+    ],
+    animation: 'fade-in',
+    sound: 'suspense'
+  },
+
+  destiny1a1_show: {
+    id: 'destiny1a1_show',
+    text: `Você mostra a mensagem. Por um momento, o rosto de Rafael fica inexpressivo.
+
+Então ele ri. Alto. Genuíno.
+
+"Cassandra? Ela ainda está fazendo isso?"
+
+"Você conhece ela?"
+
+Rafael suspira, pegando o telefone. "Ela é minha ex. Obsessiva. Quando terminei, ela jurou que ia 'salvar' todas as mulheres que eu namorasse. Diz que tem poderes místicos."
+
+Ele deleta a mensagem. "Não deixe ela te assustar. É só uma pessoa com problemas."
+
+Você quer acreditar. Mas algo dentro de você grita que não deveria.
+
+Naquela noite, você acorda com barulhos no porão.`,
+    choices: [
+      { text: 'Investigar os barulhos sozinha', nextNode: 'destiny_basement' },
+      { text: 'Acordar Rafael', nextNode: 'destiny1a1_wake' }
+    ],
+    animation: 'fade-in',
+    sound: 'ambient'
+  },
+
+  destiny1a1_wake: {
+    id: 'destiny1a1_wake',
+    text: `Você sacode Rafael. "Tem alguém no porão."
+
+Ele se levanta rapidamente, pegando um taco de beisebol. "Fica aqui."
+
+Você o vê descer as escadas. Ouve vozes. Duas pessoas conversando.
+
+Uma delas é Rafael. A outra... uma voz feminina.
+
+Você desce lentamente. A porta do porão está entreaberta. Você espia.
+
+Rafael está abraçado com uma mulher. Cabelos longos e escuros. Ela está chorando.
+
+"Eu te disse que ela descobriria", a mulher diz.
+
+"Cassandra estava certa sobre você", você sussurra, mas eles ouvem.
+
+Rafael se vira. "Eu posso explicar..."`,
+    isEnding: true,
+    endingType: 'tragic',
+    animation: 'fade-out',
+    sound: 'jumpscare'
+  },
+
+  destiny_basement: {
+    id: 'destiny_basement',
+    text: `Você desce as escadas do porão sozinha. O cheiro de umidade e algo mais... algo metálico.
+
+A luz não funciona. Você usa a lanterna do celular.
+
+No canto, você vê: um altar improvisado. Velas. Fotos. De você. Centenas delas.
+
+E no centro, cartas de tarô. Todas mostrando a mesma imagem: A Morte.
+
+Uma voz atrás de você: "Você não devia ter descido."
+
+Você se vira. Não é Rafael.
+
+É uma mulher que você nunca viu antes. Mas ela segura uma faca que você reconhece - da sua cozinha.
+
+"Cassandra me disse que você viria", ela sorri. "Meu nome é Lívia. E Rafael... bem, ele não sabe que eu moro aqui há meses."`,
+    choices: [
+      { text: 'Tentar fugir correndo', nextNode: 'destiny_run' },
+      { text: 'Gritar por Rafael', nextNode: 'destiny_scream' },
+      { text: 'Tentar conversar com ela', nextNode: 'destiny_talk_livia' }
+    ],
+    animation: 'fade-in',
+    sound: 'heartbeat'
+  },
+
+  destiny_run: {
+    id: 'destiny_run',
+    text: `Você corre para as escadas, mas Lívia é mais rápida. Ela te puxa pelo braço.
+
+Vocês caem. A faca escapa da mão dela e desliza pelo chão.
+
+Você se levanta primeiro. Pega a faca.
+
+Lívia levanta as mãos. "Espera! Eu não vim te machucar! Vim te salvar!"
+
+"SALVAR?! Você estava me espreitando!"
+
+"Porque Rafael ia fazer com você o que fez com as outras! Eu fui a única que escapou! Por favor, você precisa acreditar em mim!"
+
+Você ouve passos. Rafael está descendo.
+
+"Tudo bem aí embaixo?", ele grita.`,
+    choices: [
+      { text: 'Gritar por ajuda de Rafael', nextNode: 'destiny_rafael_help' },
+      { text: 'Ouvir o que Lívia tem a dizer', nextNode: 'destiny_livia_story' }
+    ],
+    animation: 'fade-in',
+    sound: 'suspense'
+  },
+
+  destiny_rafael_help: {
+    id: 'destiny_rafael_help',
+    text: `"Rafael! Socorro!", você grita.
+
+Ele desce correndo. Vê Lívia. Seu rosto muda completamente.
+
+"Você...", ele sussurra, e há algo em sua voz. Medo?
+
+Lívia se levanta. "Oi, amor. Quanto tempo."
+
+"Você morreu", Rafael diz, recuando. "Eu te vi morrer."
+
+"Você me VIU morrer? Ou você me FEZ morrer?"
+
+O silêncio que se segue é ensurdecedor.
+
+Você olha para Rafael. "Do que ela está falando?"
+
+Rafael olha para você com lágrimas nos olhos. "Eu posso explicar. Mas você vai me odiar."`,
+    choices: [
+      { text: 'Exigir a verdade agora', nextNode: 'destiny_truth_revealed' },
+      { text: 'Fugir enquanto eles discutem', nextNode: 'destiny_escape2' }
+    ],
+    animation: 'fade-in',
+    sound: 'heartbeat'
+  },
+
+  destiny_truth_revealed: {
+    id: 'destiny_truth_revealed',
+    text: `"FALA!", você grita.
+
+Rafael desaba no chão. "Eu... eu tenho uma condição. Sonambulismo violento. Quando durmo, eu não sou eu. Faço coisas... terríveis."
+
+Lívia completa: "Ele me atacou enquanto dormia. Tentou me matar. Eu fingi estar morta e fugi. Desde então, venho tentando salvar as mulheres que ele namora."
+
+"Por que não foi à polícia?"
+
+"Eu fui! Mas ele tem álibi perfeito. Estava dormindo. Não há como provar."
+
+Rafael soluça. "Eu tomo remédios agora. Eu juro. Eu não ia te machucar."
+
+Lívia mostra o braço. Cicatrizes profundas. "Foi o que ele disse pra mim também."
+
+Você olha para os dois. Uma das histórias é verdadeira. Ou ambas. Ou nenhuma.
+
+Em quem você confia?`,
+    choices: [
+      { text: 'Confiar em Rafael e chamar a polícia para Lívia', nextNode: 'destiny_trust_rafael' },
+      { text: 'Confiar em Lívia e fugir com ela', nextNode: 'destiny_trust_livia' },
+      { text: 'Não confiar em nenhum dos dois', nextNode: 'destiny_trust_nobody' }
+    ],
+    animation: 'fade-in',
+    sound: 'suspense'
+  },
+
+  destiny_trust_rafael: {
+    id: 'destiny_trust_rafael',
+    text: `Você escolhe Rafael. A polícia leva Lívia embora, gritando avisos.
+
+Você e Rafael tentam reconstruir. Ele te mostra os remédios. Os relatórios médicos. Tudo parece legítimo.
+
+Três meses depois, você acorda às 3h. Rafael não está na cama.
+
+Você o encontra no porão. Parado. Olhos abertos mas vazios.
+
+Na mão dele, uma faca.
+
+E na parede, escrito com sangue: "Cassandra avisou."
+
+Você nunca deveria ter confiado.`,
+    isEnding: true,
+    endingType: 'tragic',
+    animation: 'fade-out',
+    sound: 'jumpscare'
+  },
+
+  destiny_trust_livia: {
+    id: 'destiny_trust_livia',
+    text: `Você agarra a mão de Lívia. "Me tira daqui."
+
+Vocês sobem correndo. Rafael tenta te segurar, mas você empurra.
+
+"Desculpa", você diz. "Mas eu não posso arriscar."
+
+Você e Lívia correm para o carro dela. Ela dirige por horas.
+
+Vocês param em um hotel pequeno. Lívia explica tudo: outras mulheres, outras tentativas, o padrão.
+
+"Você me salvou", você diz.
+
+Ela sorri, mas há algo estranho no sorriso. "Não. Você se salvou. Assim como eu me salvei de Cassandra."
+
+"O quê?"
+
+A porta se tranca automaticamente. Lívia tira uma peruca. Embaixo, cabelos curtos e grisalhos.
+
+"Cassandra é meu nome verdadeiro. Lívia era... outra. Rafael? Ele era inocente."
+
+Você finalmente entende. Mas é tarde demais.`,
+    isEnding: true,
+    endingType: 'tragic',
+    animation: 'fade-out',
+    sound: 'jumpscare'
+  },
+
+  destiny_trust_nobody: {
+    id: 'destiny_trust_nobody',
+    text: `"Fiquem longe de mim. OS DOIS."
+
+Você sobe correndo, pega suas chaves, e vai embora. Não olha para trás.
+
+Na delegacia, você conta tudo. Eles investigam.
+
+Descobrem que: Rafael tinha sonambulismo, sim, mas estava em tratamento. Lívia era uma ex obcecada que invadiu a casa.
+
+Mas também descobrem algo mais: Cassandra. A cartomante. Ela orquestrou tudo. Manipulou Lívia. Criou o cenário perfeito para destruir Rafael e te capturar.
+
+Quando a polícia vai até a casa de Cassandra, encontram um santuário dedicado a você. Fotos desde que você era criança.
+
+"Ela é minha irmã", Cassandra confessa. "Gêmea. Nossos pais ficaram com ela. Me abandonaram. Passei a vida preparando minha vingança."
+
+Você olha nos olhos dela. É como olhar em um espelho distorcido.
+
+Você nunca soube que tinha uma irmã.
+
+Agora entende: o destino não prevê o futuro. Ele o cria.`,
+    isEnding: true,
+    endingType: 'mysterious',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  destiny_escape2: {
+    id: 'destiny_escape2',
+    text: `Enquanto eles discutem, você sobe as escadas silenciosamente.
+
+Pega as chaves. Sai pela porta da frente.
+
+No carro, você dirige sem parar até o nascer do sol.
+
+Anos depois, você nunca descobre a verdade real. Foi Rafael? Foi Lívia? Foi tudo mentira?
+
+Você vive olhando por cima do ombro.
+
+Mas pelo menos você vive.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
   },
 
   destiny2: {
