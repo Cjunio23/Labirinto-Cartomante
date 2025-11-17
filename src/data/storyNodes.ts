@@ -46,11 +46,467 @@ Então chega outra mensagem: "Ele está te vigiando. Cada passo. Você ainda tem
 
 Naquela noite chuvosa, você decide que precisa saber a verdade...`,
     choices: [
-      { text: 'Ir até a casa dele sem avisar', nextNode: 'reason2' },
-      { text: 'Ligar para ele primeiro', nextNode: 'reason3' }
+      { text: 'Ir até a casa dele sem avisar', nextNode: 'reason1a' },
+      { text: 'Contratar um detetive particular', nextNode: 'reason1b' },
+      { text: 'Verificar o histórico do celular dele', nextNode: 'reason1c' }
+    ],
+    animation: 'fade-in',
+    sound: 'heartbeat'
+  },
+
+  reason1a: {
+    id: 'reason1a',
+    text: `A chuva bate no para-brisa enquanto você dirige até o apartamento de Rafael. Cada batida do coração ecoa mais alto que o trovão.
+
+Você estaciona do outro lado da rua. A janela dele está acesa. Você vê uma sombra se movendo lá dentro.
+
+Não. Duas sombras.
+
+Rafael não está sozinho.
+
+Você espera. Quinze minutos. Meia hora. Então a porta se abre e uma mulher sai. Cabelos escuros, casaco vermelho. Ela olha para os lados antes de desaparecer na noite.
+
+Seu estômago se revira. Quem era ela?`,
+    choices: [
+      { text: 'Confrontar Rafael agora', nextNode: 'reason2' },
+      { text: 'Seguir a mulher misteriosa', nextNode: 'reason1a1' }
     ],
     animation: 'fade-in',
     sound: 'suspense'
+  },
+
+  reason1a1: {
+    id: 'reason1a1',
+    text: `Você segue a mulher pelas ruas molhadas. Ela entra em um café 24 horas três quarteirões adiante.
+
+Quando você entra, ela está sentada em uma mesa nos fundos, esperando. Como se soubesse que você viria.
+
+"Sente-se", ela diz sem olhar para você.
+
+Você hesita, mas se senta.
+
+"Meu nome é Clara. E antes que pergunte - sim, eu conheci Rafael antes de você. Muito antes."
+
+Ela empurra uma foto antiga pela mesa. Rafael mais jovem, ao lado dela. Felizes.
+
+"Ele não te contou sobre mim, contou? Sobre o que aconteceu naquela noite?"`,
+    choices: [
+      { text: 'Ouvir a história dela', nextNode: 'reason1a1_story' },
+      { text: 'Voltar e confrontar Rafael', nextNode: 'reason2' }
+    ],
+    animation: 'fade-in',
+    sound: 'ambient'
+  },
+
+  reason1a1_story: {
+    id: 'reason1a1_story',
+    text: `"Éramos noivos há cinco anos", Clara começa. "Até a noite em que ele desapareceu. Sem explicação. Sem adeus."
+
+Ela toma um gole do café frio.
+
+"Levei anos para encontrá-lo. E quando finalmente consegui... ele estava com você. Como se eu nunca tivesse existido."
+
+Seus olhos se enchem de lágrimas.
+
+"Aquelas mensagens que você recebeu? Fui eu. Porque você precisa saber a verdade antes que seja tarde demais. Rafael não é quem você pensa. Ele... ele tem algo. Uma condição. Ele apaga pessoas da vida dele quando... quando algo dentro dele muda."
+
+Você sente o ar faltar.
+
+"Eu era a terceira. Antes de mim, houve outras duas. Nenhuma delas foi encontrada."`,
+    choices: [
+      { text: 'Ir à polícia imediatamente', nextNode: 'reason_police' },
+      { text: 'Confrontar Rafael com Clara', nextNode: 'reason_confrontation' }
+    ],
+    animation: 'fade-in',
+    sound: 'heartbeat'
+  },
+
+  reason_police: {
+    id: 'reason_police',
+    text: `Você e Clara vão direto para a delegacia. A chuva continua caindo.
+
+O detetive ouve tudo. Anota. Faz algumas ligações. Então olha para vocês duas com uma expressão grave.
+
+"Precisamos agir rápido. Se o que vocês estão dizendo é verdade..."
+
+Três horas depois, você está em frente ao apartamento de Rafael com a polícia. A porta é arrombada.
+
+O apartamento está vazio. Mas no porão...
+
+Eles encontram fotos. Centenas delas. De você. De Clara. De outras mulheres. Todas marcadas com datas.
+
+E no canto, uma mala aberta. Passaportes falsos. Dinheiro. Um bilhete de avião para hoje à noite.
+
+Rafael planejava desaparecer de novo.
+
+Mas desta vez, ele não conseguiu.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  reason_confrontation: {
+    id: 'reason_confrontation',
+    text: `Vocês duas voltam ao apartamento de Rafael. Clara bate na porta com força.
+
+Rafael abre. Seu rosto empalidece quando vê Clara.
+
+"Você...", ele sussurra.
+
+"Sim, eu. E ela sabe de tudo."
+
+Por um momento, há apenas silêncio. Então Rafael ri. Um riso frio, sem humor.
+
+"Vocês não entendem. Eu fiz isso por vocês. Todas vocês. Para protegê-las."
+
+"De quê?!", você grita.
+
+Ele aponta para a própria cabeça. "Dele. O outro eu. Aquele que acorda quando estou dormindo. Aquele que... que faz coisas que eu não consigo controlar."
+
+Seus olhos estão cheios de lágrimas agora.
+
+"Eu sumo porque é a única maneira de proteger quem eu amo. Mas vocês... vocês me encontraram."
+
+Ele pega algo do bolso. Um frasco de remédios.
+
+"Eu deveria ter tomado isso há muito tempo."
+
+Antes que você possa reagir, ele engole todos os comprimidos.`,
+    isEnding: true,
+    endingType: 'tragic',
+    animation: 'fade-out',
+    sound: 'jumpscare'
+  },
+
+  reason1b: {
+    id: 'reason1b',
+    text: `O escritório do detetive cheira a café velho e papel mofado. Ele é um homem de meia-idade, com olhos cansados que já viram demais.
+
+"Você quer que eu investigue seu namorado?", ele pergunta, anotando em um bloco amarelado.
+
+"Sim. Preciso saber se ele está escondendo algo."
+
+Três dias depois, ele te liga. "Precisamos conversar. Pessoalmente."
+
+No escritório, ele espalha fotos sobre a mesa. Rafael entrando em um prédio abandonado. Rafael conversando com pessoas suspeitas. Rafael em lugares que ele disse nunca ter visitado.
+
+"Há mais", o detetive diz, empurrando uma pasta grossa. "Rafael Mendes não existe. Não oficialmente. Nenhum registro antes de cinco anos atrás. É como se ele tivesse surgido do nada."
+
+Sua mão treme ao abrir a pasta.`,
+    choices: [
+      { text: 'Ver o que está na pasta', nextNode: 'reason1b1' },
+      { text: 'Confrontar Rafael imediatamente', nextNode: 'reason2' }
+    ],
+    animation: 'fade-in',
+    sound: 'suspense'
+  },
+
+  reason1b1: {
+    id: 'reason1b1',
+    text: `Dentro da pasta há artigos de jornal antigos. Todos sobre desaparecimentos. Cinco mulheres nos últimos dez anos.
+
+Todas tinham algo em comum: namoravam um homem chamado Rafael.
+
+Em cada foto, é ele. Mais jovem em algumas, mas é ele.
+
+"Ele muda de nome, de cidade, mas o padrão é sempre o mesmo", o detetive explica. "Namoro intenso de seis meses. Então a mulher desaparece. Sem corpo. Sem pistas."
+
+Você sente náusea.
+
+"A polícia nunca conseguiu provar nada. Mas eu sei que é ele."
+
+Seu telefone vibra. Mensagem de Rafael: "Precisamos conversar. Venha ao armazém da rua 7. Sozinha. É importante."
+
+O detetive olha para você. "Não vá. É uma armadilha."`,
+    choices: [
+      { text: 'Ir ao armazém com a polícia', nextNode: 'reason1b1_police' },
+      { text: 'Ir sozinha, mas armada', nextNode: 'reason1b1_alone' }
+    ],
+    animation: 'fade-in',
+    sound: 'heartbeat'
+  },
+
+  reason1b1_police: {
+    id: 'reason1b1_police',
+    text: `Você vai com um colete à prova de balas escondido sob o casaco. A polícia está posicionada ao redor do armazém.
+
+Rafael está lá dentro, de costas, olhando pela janela quebrada.
+
+"Você veio", ele diz sem se virar.
+
+"Com a polícia", você responde, tentando manter a voz firme.
+
+Ele finalmente se vira. Há algo diferente nos olhos dele. Algo vazio.
+
+"Eu sei. Eu sempre soube que este dia chegaria."
+
+Ele levanta as mãos. "Não vou resistir. Mas você merece saber a verdade primeiro."
+
+"Eu não matei ninguém. Eu as salvei. Salvei de algo pior do que a morte."
+
+Antes que possa explicar, a polícia invade. Rafael não resiste.
+
+Nos anos seguintes, nenhum corpo é encontrado. As mulheres permanecem desaparecidas. Rafael nunca fala novamente.
+
+O mistério nunca é resolvido.`,
+    isEnding: true,
+    endingType: 'mysterious',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  reason1b1_alone: {
+    id: 'reason1b1_alone',
+    text: `Você entra no armazém sozinha. O chão range sob seus pés. Goteiras ecoam na escuridão.
+
+"Rafael?", sua voz ecoa.
+
+Uma luz se acende. Rafael está amarrado a uma cadeira, sangrando.
+
+"É uma armadilha!", ele grita.
+
+Você ouve passos atrás de você. Se vira.
+
+É o detetive. Mas seu sorriso é diferente agora. Cruel.
+
+"Você facilitou tanto", ele diz, trancando a porta.
+
+"Sabe por que Rafael nunca foi pego? Porque ele nunca fez nada. Eu criei cada evidência. Cada foto. Eu que fiz as mulheres desaparecerem."
+
+Ele se aproxima.
+
+"E você será a próxima."
+
+O último som que você ouve é Rafael gritando seu nome.`,
+    isEnding: true,
+    endingType: 'tragic',
+    animation: 'fade-out',
+    sound: 'jumpscare'
+  },
+
+  reason1c: {
+    id: 'reason1c',
+    text: `Você espera Rafael dormir. Pega o celular dele da mesa de cabeceira. Seus dedos tremem ao desbloqueá-lo.
+
+Você conhece a senha. Ele nunca escondeu de você. Até agora, você nunca teve motivos para usá-la.
+
+O histórico de mensagens está... vazio. Tudo apagado. Todas as conversas. Como se o telefone fosse novo.
+
+Mas então você encontra um aplicativo escondido. Protegido por outra senha.
+
+Você tenta a data de aniversário dele. Não funciona. Tenta a data que vocês se conheceram. Também não.
+
+Então, por impulso, tenta a data da primeira mensagem misteriosa.
+
+Funciona.
+
+O aplicativo abre. É cheio de conversas. Fotos. Vídeos.
+
+E todas são... de você. Fotos suas que você nunca soube que foram tiradas. Conversas suas com outras pessoas, gravadas secretamente.
+
+Rafael estava te observando. Documentando cada momento da sua vida.`,
+    choices: [
+      { text: 'Confrontá-lo agora mesmo', nextNode: 'reason2' },
+      { text: 'Copiar tudo e ir à polícia', nextNode: 'reason1c1' },
+      { text: 'Investigar mais antes de agir', nextNode: 'reason1c2' }
+    ],
+    animation: 'fade-in',
+    sound: 'heartbeat'
+  },
+
+  reason1c1: {
+    id: 'reason1c1',
+    text: `Você transfere tudo para seu telefone. Fotos, vídeos, mensagens. Evidências.
+
+Quando está saindo silenciosamente, Rafael acorda.
+
+"Aonde você vai?", ele pergunta, sonolento.
+
+"Banheiro", você mente.
+
+Mas ele vê seu casaco. Suas chaves na mão.
+
+Seus olhos mudam. "Você viu, não viu?"
+
+O silêncio é a resposta.
+
+Rafael se levanta lentamente. "Eu posso explicar. Eu estava... te protegendo."
+
+"Me espionando, você quer dizer."
+
+"Não! Eu precisava ter certeza de que você estava segura. Depois do que aconteceu com a última..."
+
+Ele para. Percebe que disse demais.
+
+"A última o quê, Rafael?"
+
+Ele apenas olha para você, e naquele olhar, você vê medo. Não do que você possa fazer.
+
+Mas do que ele já fez.`,
+    choices: [
+      { text: 'Correr para a porta', nextNode: 'reason_escape' },
+      { text: 'Fazer ele confessar tudo', nextNode: 'reason_confession' }
+    ],
+    animation: 'fade-in',
+    sound: 'suspense'
+  },
+
+  reason_escape: {
+    id: 'reason_escape',
+    text: `Você corre para a porta. Rafael tenta te segurar, mas você é mais rápida.
+
+Você desce as escadas dois degraus por vez. Ouve ele gritando seu nome atrás.
+
+Na rua, você corre até seu carro. As mãos tremem tanto que você quase deixa as chaves caírem.
+
+Consegue entrar. Liga o motor. Rafael aparece na rua.
+
+Você acelera.
+
+Pelo retrovisor, você o vê parado no meio da rua, diminuindo, desaparecendo.
+
+Na delegacia, você entrega tudo. Eles investigam. Encontram mais. Muito mais.
+
+Rafael é preso. Você nunca o vê novamente.
+
+Mas às vezes, tarde da noite, você ainda sente que alguém está observando.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  reason_confession: {
+    id: 'reason_confession',
+    text: `"Fale", você exige, mantendo distância. "Agora."
+
+Rafael desaba na cadeira, rosto entre as mãos.
+
+"Seu nome era Mariana. Éramos noivos. Eu a amava mais que tudo."
+
+Lágrimas escorrem pelo rosto dele.
+
+"Ela foi sequestrada. Na frente dos meus olhos. E eu não pude fazer nada. Eles nunca a encontraram."
+
+Ele olha para você.
+
+"Desde então, eu juro que nunca deixaria isso acontecer de novo. Com você, eu precisava saber onde estava. Precisava ter certeza de que estava segura. Sempre."
+
+"Isso não justifica!", você grita.
+
+"Eu sei! Eu sei que sou doente. Eu sei que preciso de ajuda. Mas eu nunca quis te machucar. Só queria..."
+
+Ele soluça.
+
+"...proteger você."
+
+Você olha para o homem quebrado à sua frente. Parte de você sente pena. Outra parte sente horror.`,
+    choices: [
+      { text: 'Ajudá-lo a buscar tratamento', nextNode: 'reason_help' },
+      { text: 'Ir embora para sempre', nextNode: 'reason_leave' }
+    ],
+    animation: 'fade-in',
+    sound: 'ambient'
+  },
+
+  reason_help: {
+    id: 'reason_help',
+    text: `Você ajuda Rafael a encontrar um terapeuta especializado em trauma. Acompanha ele nas primeiras sessões.
+
+Vocês não voltam a ser um casal. Esse capítulo terminou.
+
+Mas você vê ele tentando. Realmente tentando melhorar. Confrontar os demônios. Lidar com a perda.
+
+Anos depois, você o encontra por acaso em um café. Ele está diferente. Mais leve. Sorrindo genuinamente.
+
+"Obrigado", ele diz simplesmente. "Por não me abandonar quando você tinha todos os motivos para isso."
+
+Você sorri de volta. "Todos merecem uma segunda chance."
+
+Às vezes, o perdão é a maior libertação.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  reason_leave: {
+    id: 'reason_leave',
+    text: `Você pega suas coisas e vai embora. Bloqueia o número dele. Delete todas as fotos. Apaga qualquer rastro dele da sua vida.
+
+Nos primeiros meses, você olha por cima do ombro constantemente. Cada sombra é uma ameaça. Cada notificação faz seu coração disparar.
+
+Mas com o tempo, o medo diminui.
+
+Você se muda de cidade. Começa de novo. Novos amigos. Novo emprego. Nova vida.
+
+Cinco anos depois, você está feliz. Realmente feliz.
+
+E Rafael? Apenas uma memória distante. Um capítulo fechado.
+
+Às vezes, a melhor escolha é simplesmente seguir em frente.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  reason1c2: {
+    id: 'reason1c2',
+    text: `Você decide investigar mais fundo antes de agir. Nos dias seguintes, você finge que nada mudou.
+
+Mas à noite, quando Rafael dorme, você explora o aplicativo.
+
+Encontra algo perturbador: ele não está apenas te observando. Ele está seguindo um padrão. As mesmas fotos, os mesmos ângulos, os mesmos tipos de anotações.
+
+Como se estivesse comparando você com... alguém.
+
+Você encontra uma pasta antiga. "Mariana" está escrito nela.
+
+Dentro, milhares de fotos de outra mulher. Que se parece... exatamente com você.
+
+Não um pouco. Exatamente.
+
+Como se você fosse ela.
+
+Ou uma cópia.`,
+    choices: [
+      { text: 'Confrontar sobre Mariana', nextNode: 'reason2' },
+      { text: 'Investigar quem foi Mariana', nextNode: 'reason_mariana' }
+    ],
+    animation: 'fade-in',
+    sound: 'suspense'
+  },
+
+  reason_mariana: {
+    id: 'reason_mariana',
+    text: `Você pesquisa o nome "Mariana" junto com Rafael. Encontra artigos antigos de jornal.
+
+"Jovem desaparece misteriosamente" - 7 anos atrás.
+"Noivo devastado pede ajuda para encontrar desaparecida".
+
+E então você vê as fotos dela nos artigos.
+
+Seu sangue congela.
+
+Não é só semelhança. É como olhar em um espelho.
+
+Você investiga mais. Descobre que Rafael te encontrou em um aplicativo de encontros. Mas foi ele quem te procurou primeiro. Ele que insistiu. Ele que perseguiu você.
+
+Não foi acaso. Foi planejado.
+
+Ele estava procurando por uma substituta.
+
+Naquela noite, Rafael chega em casa com flores. "Para minha Mariana", ele diz com um sorriso.
+
+Ele te chamou de Mariana.
+
+Ele nem percebe.`,
+    isEnding: true,
+    endingType: 'mysterious',
+    animation: 'fade-out',
+    sound: 'heartbeat'
   },
 
   reason2: {
@@ -102,7 +558,7 @@ Rafael desapareceu sem deixar vestígios. Ou ele nunca existiu?`,
     isEnding: true,
     endingType: 'mysterious',
     animation: 'fade-out',
-    sound: 'suspense'
+    sound: 'ambient'
   },
 
   // CAMINHO DO DESTINO
