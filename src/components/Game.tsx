@@ -71,6 +71,25 @@ const Game = () => {
 
   const currentNode = storyNodes[gameState.currentNode];
 
+  // Safety check for missing nodes
+  if (!currentNode) {
+    console.error(`Story node not found: ${gameState.currentNode}`);
+    console.error('Available nodes:', Object.keys(storyNodes));
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center p-4">
+        <Card className="p-8 max-w-2xl bg-red-900/20 border-red-900">
+          <h2 className="text-2xl font-bold text-red-100 mb-4">Erro: Nó da história não encontrado</h2>
+          <p className="text-red-200 mb-4">
+            O nó "{gameState.currentNode}" não existe na história.
+          </p>
+          <Button onClick={() => window.location.reload()} className="bg-red-600 hover:bg-red-700">
+            Reiniciar Jogo
+          </Button>
+        </Card>
+      </div>
+    );
+  }
+
   useEffect(() => {
     if (screen !== 'playing') return;
 
