@@ -961,7 +961,8 @@ Sua voz treme. Há urgência. Medo?`,
       { text: 'Ir direto na casa de Rafael', nextNode: 'truth3' },
       { text: 'Confrontá-la por mensagem', nextNode: 'truth4' }
     ],
-    animation: 'fade-in'
+    animation: 'fade-in',
+    sound: 'notification'
   },
 
   truth2: {
@@ -972,10 +973,378 @@ Sua voz treme. Há urgência. Medo?`,
 
 Você abre. Certificados de óbito. Três mulheres. Todas ex-namoradas. Todas mortes "acidentais".`,
     choices: [
-      { text: 'Confrontar Rafael', nextNode: 'truth5' },
-      { text: 'Simplesmente ir embora', nextNode: 'truth6' }
+      { text: 'Examinar os documentos com mais atenção', nextNode: 'truth2_examine' },
+      { text: 'Perguntar sobre o hematoma dela', nextNode: 'truth2_bruise' },
+      { text: 'Sair imediatamente com as provas', nextNode: 'truth2_leave' }
     ],
     animation: 'scale-in',
+    sound: 'heartbeat'
+  },
+
+  truth2_examine: {
+    id: 'truth2_examine',
+    text: `Você examina os documentos com cuidado.
+
+A primeira morte: Ana Carolina, 2019. Queda das escadas.
+A segunda: Mariana Silva, 2020. Afogamento na banheira.
+A terceira: Beatriz Santos, 2022. Incêndio em apartamento.
+
+"Todas tiveram relacionamentos com Rafael por cerca de 6 meses", Lívia explica. "Exatamente quanto tempo vocês estão juntos."
+
+Você sente o estômago revirar.
+
+"E tem mais", ela continua, mostrando o celular. "Encontrei isso na casa dele."
+
+É um diário. Com seu nome. E uma data marcada: hoje.`,
+    choices: [
+      { text: 'Ir à polícia imediatamente', nextNode: 'truth_police' },
+      { text: 'Confrontar Rafael com Lívia como testemunha', nextNode: 'truth_confront_together' },
+      { text: 'Pedir para ver mais provas', nextNode: 'truth_more_evidence' }
+    ],
+    animation: 'fade-in',
+    sound: 'suspense'
+  },
+
+  truth2_bruise: {
+    id: 'truth2_bruise',
+    text: `"O que aconteceu com seu olho?", você pergunta.
+
+Lívia toca o hematoma, wincing. "Rafael me encontrou ontem. Disse que eu devia parar de 'inventar histórias'."
+
+"Ele te bateu?"
+
+"Não foi a primeira vez. Mas desta vez eu gravei." Ela mostra o celular - um vídeo de Rafael a empurrando contra uma parede.
+
+Sua voz no vídeo: "Se você contar pra ela, eu acabo com você. E com ela também."
+
+Você sente náusea.
+
+"Eu era como você", Lívia diz suavemente. "Achava que ele era perfeito. Até que..."
+
+Ela para. Olhos marejados.`,
+    choices: [
+      { text: 'Abraçá-la e pedir que conte tudo', nextNode: 'truth_livia_story' },
+      { text: 'Usar o vídeo como prova', nextNode: 'truth_use_video' },
+      { text: 'Questionar se ela está manipulando você', nextNode: 'truth_doubt_livia' }
+    ],
+    animation: 'fade-in',
+    sound: 'ambient'
+  },
+
+  truth2_leave: {
+    id: 'truth2_leave',
+    text: `Você pega os documentos e sai do café correndo.
+
+Precisa processar isso. Sozinha.
+
+No apartamento, você espalha tudo na mesa. Fotos. Certidões. Notícias de jornal.
+
+O padrão é inegável. E aterrorizante.
+
+Seu celular toca. Rafael.
+
+"Onde você está, amor? Estou preocupado."
+
+Sua voz soa... diferente. Ou você está paranóica?`,
+    choices: [
+      { text: 'Atender e fingir que está tudo bem', nextNode: 'truth_pretend' },
+      { text: 'Ignorar e bloquear o número', nextNode: 'truth_block' },
+      { text: 'Atender e confrontá-lo pelo telefone', nextNode: 'truth_phone_confront' }
+    ],
+    animation: 'fade-in',
+    sound: 'notification'
+  },
+
+  truth_police: {
+    id: 'truth_police',
+    text: `Você e Lívia vão direto à delegacia.
+
+O delegado ouve tudo. Examina os documentos. Seu rosto fica grave.
+
+"Vamos investigar. Mas...", ele hesita, "...precisamos de mais do que coincidências. Ele nunca foi suspeito oficialmente."
+
+"Então o que fazemos?", você pergunta, desesperada.
+
+"Fiquem longe dele. Vou colocar uma viatura para observação."
+
+Três dias depois, você recebe uma ligação.
+
+Rafael foi preso tentando invadir seu apartamento. Com clorofórmio e cordas no carro.
+
+O diário encontrado é a confissão completa. Todas as três mulheres. E você seria a quarta.
+
+Lívia te salvou.`,
+    isEnding: true,
+    endingType: 'truth',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_confront_together: {
+    id: 'truth_confront_together',
+    text: `Vocês duas vão até a casa de Rafael. Você bate na porta.
+
+Ele abre sorrindo. O sorriso congela quando vê Lívia.
+
+"Lívia? Você... você está viva?"
+
+"Surpreso?", ela diz friamente.
+
+"Eu... eu pensei que você tinha se mudado! Desaparecido!"
+
+Você mostra o diário. "Explica isso."
+
+Rafael olha para o diário. Depois para você. Depois para Lívia.
+
+E então ele sorri. Um sorriso que te faz estremecer.
+
+"Entrem", ele diz calmamente. "Vamos resolver isso como adultos."
+
+Algo na voz dele...`,
+    choices: [
+      { text: 'Entrar com Lívia', nextNode: 'truth_enter_trap' },
+      { text: 'Recusar e chamar a polícia ali mesmo', nextNode: 'truth_call_police_now' },
+      { text: 'Correr', nextNode: 'truth_run_together' }
+    ],
+    animation: 'scale-in',
+    sound: 'heartbeat'
+  },
+
+  truth_more_evidence: {
+    id: 'truth_more_evidence',
+    text: `"Você tem mais alguma prova?", você pergunta.
+
+Lívia abre uma mochila. Dentro há câmeras, gravadores, um laptop.
+
+"Eu venho investigando ele há dois anos. Desde que escapei."
+
+Ela abre o laptop. Mostra vídeos. Rafael seguindo mulheres. Entrando em suas casas à noite. Preparando "acidentes".
+
+"Ele é meticuloso. Paciente. Mas eu documentei tudo."
+
+Um dos vídeos mostra Rafael entrando no seu apartamento. Semana passada. Enquanto você dormia.
+
+Ele só... te observava.
+
+Por horas.
+
+"Jesus Cristo", você sussurra.
+
+"Ele está planejando há meses. Hoje seria o dia, de acordo com o padrão."`,
+    choices: [
+      { text: 'Ir à mídia com as provas', nextNode: 'truth_media' },
+      { text: 'Confrontá-lo com tudo', nextNode: 'truth_final_confrontation' },
+      { text: 'Desaparecer antes que seja tarde', nextNode: 'truth_disappear' }
+    ],
+    animation: 'fade-in',
+    sound: 'suspense'
+  },
+
+  truth_livia_story: {
+    id: 'truth_livia_story',
+    text: `Você abraça Lívia. Ela chora.
+
+"Eu o conheci há três anos. Ele era perfeito. Atencioso. Romântico."
+
+"Mas aos poucos... pequenas coisas. Ele sabia onde eu estava sempre. Aparecia 'por acaso'. Conhecia meus horários."
+
+"Quando tentei terminar, ele implorou. Disse que ia se matar. Então eu fiquei."
+
+"Uma noite, acordei com ele sobre mim. Mãos no meu pescoço. Olhos... vazios."
+
+"Consegui escapar. Corri. Mas ele me encontrava. Sempre."
+
+"Finalmente, fingi minha morte. Incêndio. Deixei um corpo irreconhecível."
+
+"E desde então, tento salvar as outras. Mas sempre chego tarde demais."
+
+Ela olha nos seus olhos. "Mas você... você eu posso salvar."`,
+    choices: [
+      { text: 'Fugir juntas para outro país', nextNode: 'truth_escape_abroad' },
+      { text: 'Armarem uma armadilha para ele', nextNode: 'truth_trap_rafael' },
+      { text: 'Expor tudo publicamente', nextNode: 'truth_expose_all' }
+    ],
+    animation: 'fade-in',
+    sound: 'ambient'
+  },
+
+  truth_use_video: {
+    id: 'truth_use_video',
+    text: `"Esse vídeo é tudo que precisamos", você diz.
+
+Lívia envia para seu e-mail. Para a polícia. Para amigos de confiança.
+
+"Se algo acontecer com qualquer uma de nós, todos verão."
+
+Rafael liga. Você atende no viva-voz.
+
+"Lívia está mentindo pra você", ele diz, voz calma demais. "Ela é instável. Obcecada comigo."
+
+"Então por que você a ameaçou ontem?"
+
+Silêncio.
+
+"Você... você me gravou?"
+
+"Tudo. Todas as ameaças. Todas as mentiras."
+
+Outro silêncio. Então, sussurrando:
+
+"Você não devia ter feito isso."
+
+A ligação cai.
+
+Lívia olha para você. "Precisamos sair daqui. Agora."`,
+    choices: [
+      { text: 'Ir para a casa de Lívia', nextNode: 'truth_livia_house' },
+      { text: 'Ir para um hotel', nextNode: 'truth_hotel' },
+      { text: 'Ficar e enfrentá-lo', nextNode: 'truth_stand_ground' }
+    ],
+    animation: 'scale-in',
+    sound: 'heartbeat'
+  },
+
+  truth_doubt_livia: {
+    id: 'truth_doubt_livia',
+    text: `"Como eu sei que você não está manipulando tudo isso?", você pergunta.
+
+Lívia recua, como se tivesse sido atingida.
+
+"Eu... eu entendo. É exatamente o que ele diria que eu faria."
+
+Ela respira fundo. "Tudo bem. Você não precisa confiar em mim. Mas pesquise. Ana Carolina. Mariana Silva. Beatriz Santos."
+
+"Procure no Facebook, Instagram. Veja as fotos antigas delas. Todas com Rafael."
+
+"Veja quando pararam de postar. Quando morreram."
+
+"E então me diga se estou mentindo."
+
+Ela se levanta. "Quando estiver pronta para acreditar, me liga. Mas não demore. Ele não vai."
+
+Lívia sai.
+
+Você fica sozinha com os documentos. Com a dúvida. Com o medo.`,
+    choices: [
+      { text: 'Investigar sozinha as ex-namoradas', nextNode: 'truth_investigate' },
+      { text: 'Confrontar Rafael diretamente', nextNode: 'truth_direct_confront' },
+      { text: 'Contratar um detetive particular', nextNode: 'truth_detective' }
+    ],
+    animation: 'fade-in',
+    sound: 'suspense'
+  },
+
+  truth_pretend: {
+    id: 'truth_pretend',
+    text: `"Oi amor, estou bem! Só saí para tomar um ar", você mente, forçando alegria na voz.
+
+"Que bom. Estava preocupado. Quer jantar juntos hoje?"
+
+Você olha para os documentos espalhados. Para as fotos das mulheres mortas.
+
+"Claro! Onde?"
+
+"Aquele restaurante que você ama. 20h?"
+
+"Perfeito."
+
+Você desliga. Mãos tremendo.
+
+Lívia tinha deixado um cartão. Você liga.
+
+"Ele marcou um encontro", você diz.
+
+"Não vá. Por favor, não vá."
+
+"Eu preciso. Preciso olhar nos olhos dele e saber."
+
+"Então vou com você. Estarei lá. Você não vai ficar sozinha."
+
+20h. O restaurante está cheio. Rafael te espera com flores.
+
+Você senta. Ele sorri.
+
+E você vê. Nos olhos dele. A verdade.`,
+    choices: [
+      { text: 'Acusar ele ali mesmo, na frente de todos', nextNode: 'truth_public_accusation' },
+      { text: 'Sinalizar para Lívia intervir', nextNode: 'truth_livia_intervenes' },
+      { text: 'Jogar vinho nele e sair', nextNode: 'truth_dramatic_exit' }
+    ],
+    animation: 'fade-in',
+    sound: 'heartbeat'
+  },
+
+  truth_block: {
+    id: 'truth_block',
+    text: `Você bloqueia o número. Tranca as portas. Fecha as cortinas.
+
+Mas a sensação de ser observada não passa.
+
+Às 2h da manhã, você ouve. Alguém tentando abrir a porta.
+
+Você não respira. Não se move.
+
+A maçaneta gira. Devagar.
+
+"Sei que está aí", a voz de Rafael atravessa a porta. "Podemos conversar como adultos."
+
+"Ou posso entrar de outra forma."
+
+Você pega o telefone. 190.
+
+"Polícia? Tem alguém tentando invadir minha casa."
+
+Sirenes. Rafael foge.
+
+Mas quando a polícia chega, encontram algo na porta:
+
+Um bilhete. "Você deveria ter atendido. Agora ficou mais complicado."`,
+    choices: [
+      { text: 'Pedir proteção policial', nextNode: 'truth_police_protection' },
+      { text: 'Ir para a casa de um familiar', nextNode: 'truth_family_house' },
+      { text: 'Enfrentá-lo de uma vez por todas', nextNode: 'truth_final_stand' }
+    ],
+    animation: 'scale-in',
+    sound: 'jumpscare'
+  },
+
+  truth_phone_confront: {
+    id: 'truth_phone_confront',
+    text: `"Eu sei sobre as outras, Rafael."
+
+Silêncio pesado.
+
+"...Quais outras?"
+
+"Ana. Mariana. Beatriz."
+
+Um suspiro. "Lívia te contou."
+
+"Então é verdade?"
+
+"É... complicado."
+
+"Complicado?! Elas morreram!"
+
+"Foi culpa delas! Elas iam me deixar! Depois de tudo que eu fiz!"
+
+Você congela. Ele acabou de confessar.
+
+"Você... você as matou."
+
+"E eu vou matar você também, se tentar me deixar."
+
+A linha fica muda.
+
+A porta do apartamento se abre.
+
+Ele tem chave.`,
+    choices: [
+      { text: 'Pular pela janela', nextNode: 'truth_window_escape' },
+      { text: 'Se trancar no banheiro e ligar para polícia', nextNode: 'truth_bathroom_911' },
+      { text: 'Pegar uma faca da cozinha', nextNode: 'truth_self_defense' }
+    ],
+    animation: 'fade-in',
     sound: 'heartbeat'
   },
 
@@ -991,10 +1360,72 @@ O rosto dele muda. "Ela te contou."
 
 "Entre. Você merece saber a verdade toda. Mas vai doer."`,
     choices: [
-      { text: 'Ouvir a verdade dele', nextNode: 'truth7' },
+      { text: 'Entrar e ouvir', nextNode: 'truth3_enter' },
+      { text: 'Exigir que ele fale ali mesmo', nextNode: 'truth3_doorway' },
       { text: 'Recusar e sair', nextNode: 'truth8' }
     ],
-    animation: 'fade-in'
+    animation: 'fade-in',
+    sound: 'notification'
+  },
+
+  truth3_enter: {
+    id: 'truth3_enter',
+    text: `Você entra. A casa está diferente. Mais escura. Fria.
+
+Rafael fecha a porta atrás de você.
+
+"Lívia era... especial. Eu a amava. De verdade."
+
+"E?"
+
+"E ela descobriu sobre as outras."
+
+Seu sangue gela. "Que outras?"
+
+Rafael senta. Mãos no rosto. "Eu tenho um problema. Quando amo demais, eu... preciso garantir que nunca vão embora."
+
+"Então você as mata?!"
+
+"EU AS PROTEJO!", ele grita. Então, mais calmo: "De um mundo cruel. De se machucarem. De me deixarem."
+
+Você recua para a porta. Trancada.
+
+"Mas você", ele sorri, "você é diferente. Você entende."`,
+    choices: [
+      { text: 'Concordar para ganhar tempo', nextNode: 'truth_play_along' },
+      { text: 'Atacá-lo e tentar fugir', nextNode: 'truth_attack_rafael' },
+      { text: 'Tentar raciocinar com ele', nextNode: 'truth_reason_rafael' }
+    ],
+    animation: 'scale-in',
+    sound: 'suspense'
+  },
+
+  truth3_doorway: {
+    id: 'truth3_doorway',
+    text: `"Fala aqui. Agora."
+
+Rafael olha em volta. Vizinhos podem ouvir.
+
+"Lívia não é quem você pensa. Ela é... desequilibrada. Criou toda uma fantasia sobre mim."
+
+"Ela tem provas, Rafael."
+
+"Forjadas. Ela é obcecada comigo desde que terminamos."
+
+"Por que ela faria isso?"
+
+"Porque eu a rejeitei. E agora quer destruir minha vida."
+
+Ele parece sincero. Mas...
+
+Seu celular toca. Lívia: "Não acredita nele. Tenho as provas reais. Te encontro na biblioteca em 30 min. Sozinha."`,
+    choices: [
+      { text: 'Ir encontrar Lívia na biblioteca', nextNode: 'truth_library' },
+      { text: 'Confrontar Rafael com a mensagem', nextNode: 'truth_show_message' },
+      { text: 'Ir embora sem dizer nada', nextNode: 'truth_silent_leave' }
+    ],
+    animation: 'fade-in',
+    sound: 'notification'
   },
 
   truth4: {
@@ -1003,10 +1434,218 @@ O rosto dele muda. "Ela te contou."
 
 Lívia: "Rafael não é quem diz ser. Quanto mais você fica perto dele, menos chance tem de sobreviver."
 
-"Encontra comigo. Ou descubra sozinha. Mas quando descobrir, pode ser tarde demais."`,
+"Encontra comigo. Ou descubra sozinha. Mas quando descobrir, pode ser tarde demais."
+
+Você bloqueia ela. Bloqueia Rafael. Troca as fechaduras.
+
+Durante um mês, você se isola.
+
+Até que um dia, lendo o jornal:
+
+"Mulher encontrada morta em apartamento. Polícia suspeita de serial killer."
+
+A foto é de Lívia.
+
+E embaixo, em letras menores: "Vítima havia denunciado perseguição nos últimos meses."
+
+Seu telefone toca. Número desconhecido.
+
+"Alô?"
+
+"Lívia tentou te salvar. Eu fui mais rápido. Você é a próxima."
+
+É Rafael.`,
     isEnding: true,
-    endingType: 'truth',
-    animation: 'fade-out'
+    endingType: 'tragic',
+    animation: 'fade-out',
+    sound: 'heartbeat'
+  },
+
+  // Continuação dos novos nós do caminho Truth
+
+  truth_investigate: {
+    id: 'truth_investigate',
+    text: `Você passa dias pesquisando.
+
+Ana Carolina: último post no Instagram - foto com Rafael. "Finalmente feliz ❤️"
+Duas semanas depois: notícia de óbito.
+
+Mariana Silva: Facebook cheio de fotos dele. Última atualização: "Começando uma vida nova"
+Um mês depois: encontrada morta na banheira.
+
+Beatriz Santos: Twitter. "Conheci alguém incrível"
+A foto mostra Rafael ao fundo.
+Três semanas depois: incêndio em seu apartamento.
+
+O padrão é inegável.
+
+Você verifica suas próprias redes sociais. Conta os posts sobre Rafael.
+
+Vinte e três.
+
+E vocês estão juntos há... cinco meses e meio.
+
+Lívia estava certa.`,
+    choices: [
+      { text: 'Ligar para Lívia e se desculpar', nextNode: 'truth_apologize_livia' },
+      { text: 'Ir à polícia com suas descobertas', nextNode: 'truth_police_evidence' },
+      { text: 'Confrontar Rafael com prints das redes sociais', nextNode: 'truth_social_media_confront' }
+    ],
+    animation: 'fade-in',
+    sound: 'suspense'
+  },
+
+  truth_direct_confront: {
+    id: 'truth_direct_confront',
+    text: `Você vai até a casa de Rafael sem avisar. Porta aberta.
+
+Você entra. A casa está silenciosa.
+
+"Rafael?"
+
+Nenhuma resposta.
+
+Você explora. Na mesa, documentos. Seu nome. Seu endereço. Seus horários.
+
+Uma pasta inteira sobre você.
+
+No computador, aberto: um fórum. "Como desaparecer sem deixar rastros."
+
+Seu estômago revira.
+
+No quarto, você encontra: fotos suas dormindo. Centenas. De ângulos impossíveis.
+
+Ele tem câmeras no seu apartamento.
+
+A porta do quarto se fecha atrás de você.
+
+"Procurando algo?"
+
+É Rafael.`,
+    choices: [
+      { text: 'Fingir que não viu nada', nextNode: 'truth_pretend_nothing' },
+      { text: 'Correr para a janela', nextNode: 'truth_bedroom_escape' },
+      { text: 'Confrontá-lo sobre tudo', nextNode: 'truth_confront_photos' }
+    ],
+    animation: 'scale-in',
+    sound: 'jumpscare'
+  },
+
+  truth_detective: {
+    id: 'truth_detective',
+    text: `Você contrata um detetive particular. Ex-policial. Discreto.
+
+Uma semana depois, ele te liga: "Precisamos conversar. Pessoalmente."
+
+No escritório dele, ele coloca uma pasta na mesa.
+
+"Rafael Almeida. Três identidades diferentes nos últimos 10 anos."
+
+"O quê?"
+
+"Guilherme Costa em São Paulo. Marcelo Santos no Rio. Rafael Almeida aqui."
+
+"Sempre o mesmo padrão. Relacionamento. Seis meses. Morte 'acidental'. Mudança de cidade e identidade."
+
+"Encontrei oito vítimas. Que eu consegui confirmar. Podem ter mais."
+
+Você não consegue respirar.
+
+"Tem mais", o detetive continua. "Ele tem uma irmã. Cassandra. Que o ajuda a selecionar as vítimas."
+
+Cassandra. A taróloga.`,
+    choices: [
+      { text: 'Confrontar Cassandra', nextNode: 'truth_confront_cassandra' },
+      { text: 'Ir com tudo isso para a polícia federal', nextNode: 'truth_federal_police' },
+      { text: 'Usar você mesma como isca', nextNode: 'truth_be_bait' }
+    ],
+    animation: 'fade-in',
+    sound: 'heartbeat'
+  },
+
+  // FINAIS DO CAMINHO TRUTH (mais de 30 finais únicos possíveis)
+
+  truth_enter_trap: {
+    id: 'truth_enter_trap',
+    text: `Vocês entram. Rafael fecha a porta.
+
+"Sabe", ele diz calmamente, "eu sempre soube que vocês duas se encontrariam eventualmente."
+
+Ele tira algo do bolso. Um controle remoto.
+
+"Por isso preparei a casa."
+
+Um clique. Todas as saídas se trancam.
+
+Lívia tenta a janela. Barras de metal cobrem do lado de fora.
+
+"Você planejou isso", você sussurra.
+
+"Planejei TUDO. Desde o primeiro dia. Cassandra me ajudou a escolher você. A mensagem de Lívia foi MINHA ideia. Eu mandei ela enviar."
+
+"Por quê?"
+
+"Porque", ele sorri, "vocês duas juntas são o final perfeito. Minhas duas mulheres favoritas. Juntas. Para sempre."
+
+Ele avança.`,
+    isEnding: true,
+    endingType: 'tragic',
+    animation: 'fade-out',
+    sound: 'heartbeat'
+  },
+
+  truth_call_police_now: {
+    id: 'truth_call_police_now',
+    text: `Você disca 190 ali mesmo.
+
+Rafael vê e corre. Lívia tenta segurá-lo mas ele a empurra.
+
+A polícia chega em 8 minutos. Encontra vocês duas. Assustadas mas vivas.
+
+Rafael foge, mas deixa tudo para trás. O diário. As provas. Tudo.
+
+Dois dias depois, ele é capturado tentando fugir para o Paraguai.
+
+O julgamento é rápido. As provas, incontestáveis.
+
+Rafael é condenado por três assassinatos e duas tentativas.
+
+Você e Lívia se tornam amigas. Ambas sobreviventes.
+
+Você finalmente consegue dormir sem medo.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_run_together: {
+    id: 'truth_run_together',
+    text: `"CORRE!", você grita.
+
+Vocês duas correm. Rafael vem atrás.
+
+Mas vocês são mais rápidas. Mais desesperadas.
+
+Lívia tem um carro. Vocês entram. Trancam.
+
+Rafael bate no vidro. "VOCÊ NÃO PODE ESCAPAR!"
+
+Lívia acelera.
+
+Vocês dirigem por horas. Cruzam a fronteira. Começam uma vida nova.
+
+Juntas, vocês se protegem. Curam. Recomeçam.
+
+Anos depois, você recebe uma carta. Rafael morreu na prisão.
+
+Você queima a carta sem ler.
+
+Algumas histórias merecem ser esquecidas.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
   },
 
   truth5: {
@@ -1022,7 +1661,8 @@ Você sai. A chuva começa a cair. Mas pela primeira vez em meses, você respira
 A verdade dói. Mas liberta.`,
     isEnding: true,
     endingType: 'liberation',
-    animation: 'fade-out'
+    animation: 'fade-out',
+    sound: 'ambient'
   },
 
   truth6: {
@@ -1036,7 +1676,8 @@ Seis meses depois, com um novo nome, você finalmente sorri de verdade.
 Recomeçar foi a melhor vingança.`,
     isEnding: true,
     endingType: 'liberation',
-    animation: 'fade-out'
+    animation: 'fade-out',
+    sound: 'ambient'
   },
 
   truth7: {
@@ -1046,7 +1687,8 @@ Recomeçar foi a melhor vingança.`,
 Você não sabe mais em quem confiar. A verdade tem tantas versões. Qual delas é real?`,
     isEnding: true,
     endingType: 'mysterious',
-    animation: 'fade-out'
+    animation: 'fade-out',
+    sound: 'suspense'
   },
 
   truth8: {
@@ -1060,6 +1702,879 @@ Você sai. Na rua, Lívia liga.
 "Outras?"`,
     isEnding: true,
     endingType: 'truth',
-    animation: 'fade-out'
+    animation: 'fade-out',
+    sound: 'notification'
+  },
+
+  // Adicionando todos os outros finais necessários
+  truth_media: {
+    id: 'truth_media',
+    text: `Você leva tudo para a imprensa.
+
+No dia seguinte, a história explode. "Serial Killer Romântico Aterroriza Cidade."
+
+Rafael é preso. As famílias das vítimas finalmente têm respostas.
+
+Você e Lívia dão entrevistas. Contam suas histórias. Salvam outras mulheres.
+
+Rafael tenta se defender, mas as provas são irrefutáveis.
+
+Condenado a 120 anos.
+
+Você finalmente sente que pode seguir em frente.`,
+    isEnding: true,
+    endingType: 'truth',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_final_confrontation: {
+    id: 'truth_final_confrontation',
+    text: `Você vai até Rafael com Lívia e todas as provas.
+
+"Acabou", você diz simplesmente.
+
+Rafael olha para os vídeos. Para o diário. Para vocês duas.
+
+E então... ele chora.
+
+"Eu sou doente. Eu sei. Preciso de ajuda."
+
+"Você precisa de prisão", Lívia diz.
+
+A polícia chega. Vocês já tinham ligado antes.
+
+Rafael é levado. Você e Lívia se abraçam.
+
+Sobreviventes.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_disappear: {
+    id: 'truth_disappear',
+    text: `Você e Lívia desaparecem.
+
+Novos nomes. Novos países. Novas vidas.
+
+Rafael nunca encontra vocês.
+
+Anos depois, você lê que ele foi preso por tentar matar outra mulher.
+
+Mas ela sobreviveu. Graças aos alertas que você e Lívia espalharam.
+
+Você salvou uma vida desaparecendo.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_escape_abroad: {
+    id: 'truth_escape_abroad',
+    text: `Vocês fogem para Lisboa. Começam uma vida nova juntas.
+
+Lívia muda de identidade. Você também.
+
+Vocês abrem uma ONG para mulheres em relacionamentos abusivos.
+
+Anos depois, Rafael é preso. Mas vocês já estão seguras. Longe. Livres.
+
+A melhor vingança é viver bem.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_trap_rafael: {
+    id: 'truth_trap_rafael',
+    text: `Vocês armam uma armadilha. Gravam uma confissão.
+
+Rafael cai. Confessa tudo. Sobre as três mulheres. Os planos.
+
+A gravação vai para a polícia. Para a mídia.
+
+Ele é preso antes que possa reagir.
+
+Você e Lívia testemunham no julgamento.
+
+Justiça é servida.`,
+    isEnding: true,
+    endingType: 'truth',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_expose_all: {
+    id: 'truth_expose_all',
+    text: `Vocês expõem tudo nas redes sociais. Documentos, fotos, tudo.
+
+A história viraliza. #JustiçaParaAsVítimas
+
+Rafael tenta fugir mas é reconhecido no aeroporto.
+
+Preso. Julgado. Condenado.
+
+Vocês salvaram inúmeras outras mulheres ao expor a verdade.`,
+    isEnding: true,
+    endingType: 'truth',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_livia_house: {
+    id: 'truth_livia_house',
+    text: `Vocês vão para a casa de Lívia. É um bunker. Preparado.
+
+"Eu sabia que este dia chegaria", ela explica.
+
+Câmeras. Alarmes. Tudo monitorado.
+
+Quando Rafael tenta invadir, é capturado em vídeo.
+
+A polícia o prende em flagrante.
+
+Vocês estavam preparadas.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_hotel: {
+    id: 'truth_hotel',
+    text: `Vocês vão para um hotel no centro. Muita gente. Segurança.
+
+Rafael aparece no lobby. Seguranças o interceptam.
+
+A polícia chega. Você mostra as provas.
+
+Ele é preso na frente de todos.
+
+Humilhado. Derrotado.
+
+Você finalmente respira.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_stand_ground: {
+    id: 'truth_stand_ground',
+    text: `"Não vou fugir mais", você diz a Lívia.
+
+Rafael chega. Você mostra que tem backup. Provas em vários lugares.
+
+"Se algo acontecer comigo, todos saberão. A polícia, a mídia, TODOS."
+
+Rafael percebe que perdeu.
+
+Ele não pode te tocar sem se expor.
+
+Você venceu.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_public_accusation: {
+    id: 'truth_public_accusation',
+    text: `Você se levanta. Grita: "Este homem matou três mulheres!"
+
+O restaurante silencia.
+
+Rafael tenta negar. Mas você mostra os documentos. Ali. Para todos.
+
+Alguém filma. Viraliza.
+
+A pressão pública força uma investigação.
+
+Rafael é preso três dias depois.
+
+Seu grito salvou sua vida.`,
+    isEnding: true,
+    endingType: 'truth',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_livia_intervenes: {
+    id: 'truth_livia_intervenes',
+    text: `Você faz um sinal. Lívia aparece.
+
+"Polícia está a caminho, Rafael", ela diz.
+
+Rafael se levanta bruscamente. Tenta fugir.
+
+Mas a polícia já estava posicionada. Lívia havia chamado antes.
+
+Ele é preso na saída do restaurante.
+
+Você abraça Lívia. Vocês salvaram uma à outra.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_dramatic_exit: {
+    id: 'truth_dramatic_exit',
+    text: `Você joga o vinho na cara dele. "Eu sei de TUDO!"
+
+E sai. Deixa ele ali. Humilhado.
+
+Na rua, Lívia te espera. Carro ligado.
+
+Vocês fogem. Mas desta vez, juntas. Preparadas.
+
+Rafael tenta segui-las. Mas vocês já avisaram a polícia.
+
+Ele é preso na estrada.
+
+Acabou.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_police_protection: {
+    id: 'truth_police_protection',
+    text: `A polícia oferece proteção. Uma viatura na sua porta.
+
+Rafael tenta se aproximar três vezes. Três vezes é impedido.
+
+Na terceira, é preso por violação de medida protetiva.
+
+Na prisão, outros crimes são descobertos.
+
+Ele nunca mais sai.
+
+Você finalmente está segura.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_family_house: {
+    id: 'truth_family_house',
+    text: `Você vai para a casa da sua mãe. Em outra cidade.
+
+Rafael não sabe onde. Ninguém conta.
+
+Semanas depois, você lê: "Homem preso por tentativa de homicídio."
+
+Era Rafael. Tentou atacar outra mulher.
+
+Mas desta vez, ela estava pronta. Graças aos seus avisos.
+
+Você a salvou sem nem saber.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_final_stand: {
+    id: 'truth_final_stand',
+    text: `"Vem", você diz ao telefone. "Vamos terminar isso."
+
+Rafael chega. Mas você não está sozinha.
+
+Lívia. A polícia. Uma equipe de TV.
+
+"Você quer me matar?", você diz, câmeras gravando. "Então faz. Na frente de todos."
+
+Rafael congela. Percebe a armadilha.
+
+Ele corre. Mas é capturado duas quadras depois.
+
+Você venceu.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_window_escape: {
+    id: 'truth_window_escape',
+    text: `Você pula pela janela. Segundo andar.
+
+Dói. Mas você corre.
+
+Rafael vem atrás. Mas vizinhos veem. Chamam a polícia.
+
+Você se esconde numa loja. Explica tudo.
+
+A polícia chega. Prende Rafael tentando te procurar.
+
+Na bolsa dele: corda, fita adesiva, clorofórmio.
+
+Premeditado.
+
+Ele é condenado a 40 anos.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_bathroom_911: {
+    id: 'truth_bathroom_911',
+    text: `Você corre para o banheiro. Tranca. Liga 190.
+
+"Ele está aqui. Ele confessou. Por favor, rápido!"
+
+Rafael bate na porta. "ABRE!"
+
+Você ouve sirenes. 4 minutos.
+
+A porta começa a ceder.
+
+Polícia invade o apartamento. Rafael é contido.
+
+Você sai do banheiro. Tremendo mas viva.
+
+Você sobreviveu.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_self_defense: {
+    id: 'truth_self_defense',
+    text: `Você pega a faca maior da cozinha.
+
+Rafael entra. Vê a faca. Para.
+
+"Você não vai me machucar", ele diz, avançando.
+
+Você não hesita. Corta o braço dele.
+
+Ele recua, surpreso. "Você... me cortou?"
+
+"E vou fazer pior se chegar perto."
+
+Ele foge. Você liga para polícia.
+
+Rafael é preso no hospital.
+
+Legítima defesa. Você é inocentada.
+
+Você salvou sua própria vida.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_play_along: {
+    id: 'truth_play_along',
+    text: `"Você está certo", você mente. "Eu entendo."
+
+Rafael sorri. Relaxa.
+
+Você se aproxima. Abraça ele.
+
+E discretamente, liga para 190 no bolso.
+
+Deixa o celular gravando.
+
+Rafael confessa tudo, pensando que você é cúmplice.
+
+Quando a polícia chega, tem tudo gravado.
+
+Ele percebe tarde demais que você o enganou.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_attack_rafael: {
+    id: 'truth_attack_rafael',
+    text: `Você pega um vaso e bate na cabeça dele.
+
+Rafael cai. Você corre para a porta. Trancada.
+
+Procura a chave. Encontra. Mãos tremendo.
+
+Rafael se levanta. Sangue no rosto.
+
+Você abre a porta. Corre.
+
+Grita na rua. Vizinhos aparecem.
+
+Rafael não pode fazer nada com testemunhas.
+
+Polícia chega. Você conta tudo.
+
+Ele é preso. Você é livre.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_reason_rafael: {
+    id: 'truth_reason_rafael',
+    text: `"Rafael, você precisa de ajuda. Profissional."
+
+Ele olha para você. Por um momento, parece... humano.
+
+"Eu sei", ele sussurra. "Eu não quero ser assim."
+
+"Então vamos juntos. Polícia, psiquiatra. Eu te acompanho."
+
+Rafael chora. Concorda.
+
+Vocês saem juntos. Ele se entrega.
+
+No julgamento, você testemunha. Ele é enviado para hospital psiquiátrico.
+
+Não é liberdade. Mas é justiça.`,
+    isEnding: true,
+    endingType: 'mysterious',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_library: {
+    id: 'truth_library',
+    text: `Você vai à biblioteca. Lívia está numa mesa dos fundos.
+
+Ela abre um baú. Dentro: diários. De Rafael.
+
+"Roubei da casa dele. Leia."
+
+Você lê. Cada página, mais aterrorizante.
+
+Planos detalhados. Datas. Métodos.
+
+Seu nome aparece 47 vezes.
+
+"Ele está vindo", Lívia diz de repente. "Rastreou meu celular."
+
+Rafael entra na biblioteca.
+
+Vocês duas se olham.
+
+Correr ou confrontar?`,
+    choices: [
+      { text: 'Correr pelos fundos', nextNode: 'truth_library_escape' },
+      { text: 'Confrontar com testemunhas', nextNode: 'truth_library_confront' }
+    ],
+    animation: 'scale-in',
+    sound: 'heartbeat'
+  },
+
+  truth_library_escape: {
+    id: 'truth_library_escape',
+    text: `Vocês correm pelos fundos. Saída de emergência.
+
+Mas Rafael é rápido. Alcança Lívia.
+
+Você volta. Pega um livro grosso. Bate nele.
+
+Rafael solta Lívia. Vocês correm.
+
+Na rua, tudo é testemunha.
+
+Rafael não pode fazer nada.
+
+Mas você sabe: isso não acabou.
+
+Ainda não.`,
+    isEnding: true,
+    endingType: 'mysterious',
+    animation: 'fade-out',
+    sound: 'suspense'
+  },
+
+  truth_library_confront: {
+    id: 'truth_library_confront',
+    text: `"RAFAEL!", você grita. Toda a biblioteca olha.
+
+Você levanta os diários. "Assassino! Está tudo aqui!"
+
+Rafael para. Percebe todas as pessoas filmando.
+
+Ele tenta falar mas você continua. Mostra as páginas.
+
+Seguranças chegam. Polícia é chamada.
+
+Rafael é preso ali mesmo.
+
+Os diários são prova suficiente.
+
+Você e Lívia se abraçam.
+
+Sobreviventes. Heroínas.`,
+    isEnding: true,
+    endingType: 'truth',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_show_message: {
+    id: 'truth_show_message',
+    text: `Você mostra a mensagem de Lívia.
+
+"Ela está tentando nos separar", Rafael diz calmamente.
+
+Mas você percebe algo. Nos olhos dele.
+
+Pânico. Só por um segundo. Mas estava lá.
+
+"Ela está certa, não é?", você sussurra.
+
+Rafael não responde. E isso diz tudo.
+
+Você corre. Ele tenta segurar mas você é mais rápida.
+
+Na rua, você liga para Lívia.
+
+"Você tinha razão."
+
+"Eu sei. Vem. Vamos te proteger."`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_silent_leave: {
+    id: 'truth_silent_leave',
+    text: `Você simplesmente vai embora. Sem explicar.
+
+Bloqueia Rafael. Bloqueia Lívia. Bloqueia todos.
+
+Muda de cidade. De número. De vida.
+
+Anos depois, você lê sobre Rafael. Preso. Serial killer.
+
+Lívia havia sido encontrada morta meses antes.
+
+Você sobreviveu porque desapareceu.
+
+Mas a culpa de não ter salvado Lívia...
+
+Essa nunca passa.`,
+    isEnding: true,
+    endingType: 'tragic',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_apologize_livia: {
+    id: 'truth_apologize_livia',
+    text: `Você liga para Lívia. "Você estava certa. Desculpa."
+
+"Eu sei que estava", ela diz gentilmente. "Agora vem. Temos trabalho a fazer."
+
+Juntas, vocês constroem um caso irrefutável.
+
+Documentos. Testemunhas. Provas forenses.
+
+Levam tudo para a polícia federal.
+
+Rafael é preso. Investigação revela mais 5 vítimas.
+
+Você e Lívia escrevem um livro sobre a experiência.
+
+Salvam incontáveis outras mulheres.`,
+    isEnding: true,
+    endingType: 'truth',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_police_evidence: {
+    id: 'truth_police_evidence',
+    text: `Você vai direto à polícia com suas descobertas.
+
+Delegada examina tudo. Fica pálida.
+
+"Como ninguém viu esse padrão antes?"
+
+"Porque ele é muito bom", você responde.
+
+A delegada monta uma operação. Rafael é preso preventivamente.
+
+Na casa dele, encontram troféus. Das vítimas.
+
+Fotos. Joias. Um diário macabro.
+
+Rafael é condenado. Prisão perpétua.
+
+Você ajudou a tirar um monstro das ruas.`,
+    isEnding: true,
+    endingType: 'truth',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_social_media_confront: {
+    id: 'truth_social_media_confront',
+    text: `Você vai até Rafael com prints de tudo.
+
+"Explica essas mortes 'coincidentais'."
+
+Rafael olha. Fica em silêncio.
+
+Então sorri. "Você é tão esperta. Eu sempre soube."
+
+"Foi você. Todas elas."
+
+"E você seria a obra-prima. Mas agora..."
+
+Ele avança. Você corre.
+
+Na rua, grita. Pessoas aparecem.
+
+Rafael foge.
+
+Você vai à polícia. Com tudo.
+
+Ele é capturado tentando deixar o país.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_pretend_nothing: {
+    id: 'truth_pretend_nothing',
+    text: `"Eu... me perdi. Procurando o banheiro", você mente.
+
+Rafael olha para as fotos espalhadas. Para você.
+
+"Claro. O banheiro."
+
+Ele se aproxima. Fecha a porta.
+
+"Sabe qual é o problema com mulheres curiosas?"
+
+Você não responde.
+
+"Elas descobrem coisas que não deveriam."
+
+Sua mão vai para o bolso. Celular.
+
+Mas ele é mais rápido.
+
+"Vamos conversar. Como civilizados."
+
+O tom dele diz que não há saída fácil.`,
+    choices: [
+      { text: 'Gritar por ajuda', nextNode: 'truth_scream_help' },
+      { text: 'Tentar negociar', nextNode: 'truth_negotiate' }
+    ],
+    animation: 'scale-in',
+    sound: 'heartbeat'
+  },
+
+  truth_scream_help: {
+    id: 'truth_scream_help',
+    text: `Você grita o mais alto que pode.
+
+Vizinhos ouvem. Batem na porta.
+
+Rafael hesita. Abre.
+
+"Tudo bem aqui?", perguntam.
+
+"Sim, só uma discussão", Rafael mente.
+
+Mas você corre para fora. "Ele me trancou! Chamem a polícia!"
+
+Vizinhos seguram Rafael. Polícia chega.
+
+Na casa, encontram todas as provas.
+
+Você foi salva pela sua própria voz.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_negotiate: {
+    id: 'truth_negotiate',
+    text: `"Eu não vou contar nada. Juro."
+
+Rafael ri. "Claro que não. Porque você me ama, né?"
+
+"Sim", você mente. "Por isso vim aqui."
+
+"Mentirosa."
+
+Ele avança. Você pega algo. Um peso de papel.
+
+Bate nele. Ele tropeça.
+
+Você corre. Porta. Rua. Liberdade.
+
+Rafael fica para trás, atordoado.
+
+Você vai direto à polícia.
+
+Com sua descrição, prendem ele em horas.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_bedroom_escape: {
+    id: 'truth_bedroom_escape',
+    text: `Você corre para a janela. Abre.
+
+Rafael te segura. Vocês lutam.
+
+Você cai. Ele também.
+
+A janela estilhaça.
+
+Vocês caem. Primeiro andar. Vocês sobrevivem.
+
+Mas você se levanta primeiro. Corre.
+
+Rafael fica ferido. Gritando ameaças.
+
+Vizinhos chamam ambulância. E polícia.
+
+No hospital, você conta tudo.
+
+Rafael é preso na maca.
+
+Você ganhou.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_confront_photos: {
+    id: 'truth_confront_photos',
+    text: `"VOCÊ TEM CÂMERAS NA MINHA CASA?!"
+
+Rafael não nega. "Eu precisava te proteger."
+
+"PROTEGER?! VOCÊ É UM STALKER!"
+
+"EU TE AMO!"
+
+"Você é doente!"
+
+Rafael se desespera. Tenta explicar. Mas cada palavra piora.
+
+Você grava tudo. Quando ele percebe, já é tarde.
+
+Você sai. Vai à polícia.
+
+As gravações, mais as câmeras, são provas suficientes.
+
+Rafael é condenado por invasão de privacidade e stalking.
+
+7 anos de prisão.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_confront_cassandra: {
+    id: 'truth_confront_cassandra',
+    text: `Você vai até o estúdio de Cassandra. Bate com força.
+
+"Você sabia. O tempo todo."
+
+Cassandra não nega. "Ele é meu irmão."
+
+"Ele mata mulheres!"
+
+"E eu ajudo ele a escolher aquelas que... merecem."
+
+Você grava tudo. Cassandra não percebe.
+
+"Você está tão doente quanto ele."
+
+Na delegacia, você mostra a gravação.
+
+Cassandra e Rafael são presos juntos.
+
+Cúmplices. Serial killers em dupla.
+
+Ambos condenados à prisão perpétua.`,
+    isEnding: true,
+    endingType: 'truth',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_federal_police: {
+    id: 'truth_federal_police',
+    text: `Você leva tudo para a Polícia Federal.
+
+Múltiplos estados. Múltiplas identidades. Crime organizado.
+
+A PF cria uma força-tarefa.
+
+Rafael é classificado como serial killer ativo.
+
+Duas semanas depois: operação nacional.
+
+Rafael é capturado. Cassandra também.
+
+Mais 12 cúmplices são descobertos.
+
+Uma rede inteira.
+
+Você expôs um esquema que durava décadas.
+
+50+ vítimas identificadas.
+
+Você salvou o futuro.`,
+    isEnding: true,
+    endingType: 'truth',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  truth_be_bait: {
+    id: 'truth_be_bait',
+    text: `"Eu vou ser a isca", você diz ao detetive.
+
+"É perigoso."
+
+"Eu sei. Mas é a única forma de pegá-lo em flagrante."
+
+Você marca um encontro com Rafael. Local isolado.
+
+Mas a polícia está em toda parte. Câmeras. Drones.
+
+Rafael aparece. Com clorofórmio. Cordas.
+
+Quando ele tenta te atacar, você diz: "AGORA!"
+
+Polícia cerca. Rafael é preso.
+
+Com tentativa de homicídio em flagrante, não há como negar.
+
+Você arriscou sua vida.
+
+E salvou todas as futuras vítimas.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
   }
 };
