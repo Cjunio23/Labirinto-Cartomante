@@ -582,6 +582,220 @@ Seu reflexo no espelho pisca - mas há algo errado. O reflexo se move sozinho...
     sound: 'notification'
   },
 
+  destiny1b: {
+    id: 'destiny1b',
+    text: `Você digita no fórum: "Preciso de ajuda. Algo está errado."
+
+A Cartomante Virtual responde instantaneamente:
+
+"Eu sei quem você é. Sei o que você teme. As cartas já falaram sobre você."
+
+Uma nova carta aparece na tela: **O Enforcado**.
+
+"Você está presa em uma situação. Alguém te mantém cativa sem que perceba. As correntes são de amor... e medo."
+
+Outra carta: **A Lua**.
+
+"Ilusões. Enganos. Nada é o que parece. Aquele que dorme ao seu lado esconde um segredo que pode te destruir."
+
+E então, a última carta: **O Julgamento**.
+
+"O momento de decidir chegou. Ignorar a verdade ou enfrentá-la. Mas saiba: uma vez que abrir os olhos, não há como fechá-los novamente."
+
+Seu celular toca. É Rafael. "Onde você está, amor?"`,
+    choices: [
+      { text: 'Desligar e continuar a sessão', nextNode: 'destiny1b_continue' },
+      { text: 'Atender e fingir normalidade', nextNode: 'destiny1a1' },
+      { text: 'Pedir à Cartomante que revele tudo', nextNode: 'destiny1b_reveal' }
+    ],
+    animation: 'scale-in',
+    sound: 'suspense'
+  },
+
+  destiny1b_continue: {
+    id: 'destiny1b_continue',
+    text: `Você ignora a ligação. Rafael liga de novo. E de novo.
+
+"Ele está te procurando", a Cartomante digita. "Ele sempre procura. Sempre encontra."
+
+"Como você sabe tanto sobre ele?"
+
+"Porque eu o conheci. Antes de você. Antes de todas as outras."
+
+A tela pisca. Uma foto aparece. Uma mulher. Jovem. Sorrindo.
+
+"Meu nome era Helena. Namorei Rafael há 8 anos."
+
+"Era?"
+
+"Oficialmente, morri em um acidente de carro. Na verdade, eu escapei. Mudei de nome. De vida. Me tornei... isto."
+
+"Uma cartomante online?"
+
+"Uma guardiã. Alguém que tenta salvar as próximas."`,
+    choices: [
+      { text: 'Pedir para ela te ajudar a escapar', nextNode: 'destiny1b_help' },
+      { text: 'Duvidar da história dela', nextNode: 'destiny1b_doubt' }
+    ],
+    animation: 'fade-in',
+    sound: 'heartbeat'
+  },
+
+  destiny1b_help: {
+    id: 'destiny1b_help',
+    text: `"Me ajuda. Por favor."
+
+"Há apenas uma forma. Você precisa encontrar o diário dele. Está escondido no porão. Atrás da parede falsa."
+
+"Como você sabe?"
+
+"Porque eu o encontrei. Foi assim que descobri a verdade sobre as outras."
+
+Você desliga a sessão. Vai até a casa de Rafael. Ele não está.
+
+O porão está trancado, mas você encontra a chave.
+
+Atrás de uma estante, você sente. A parede é diferente. Oca.
+
+Você quebra o gesso.
+
+E encontra.
+
+O diário. Com nomes. Datas. Fotos. Planejamentos meticulosos.
+
+Seu nome está lá. Marcado para hoje.`,
+    choices: [
+      { text: 'Levar o diário para a polícia', nextNode: 'destiny1b_police' },
+      { text: 'Confrontar Rafael quando ele chegar', nextNode: 'destiny_confrontation' }
+    ],
+    animation: 'scale-in',
+    sound: 'suspense'
+  },
+
+  destiny1b_police: {
+    id: 'destiny1b_police',
+    text: `Você corre para a delegacia com o diário.
+
+O delegado lê. Empalidece.
+
+"Há 15 nomes aqui. 12 com 'X' marcado."
+
+"O que significa?"
+
+Ele não responde. Mas você sabe.
+
+Rafael é preso naquela noite. O diário é prova suficiente.
+
+Na investigação, encontram os restos de 8 das 12 mulheres.
+
+Helena, a Cartomante, testemunha no julgamento.
+
+Rafael é condenado à prisão perpétua.
+
+A última coisa que ele te diz: "Você era especial. A única que descobriu."
+
+Você não responde. Apenas sai.
+
+Livre.`,
+    isEnding: true,
+    endingType: 'truth',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  destiny1b_doubt: {
+    id: 'destiny1b_doubt',
+    text: `"Como sei que você não está inventando tudo isso?"
+
+A Cartomante para de digitar por um momento.
+
+"Você não sabe. Assim como não sabe se Rafael é quem diz ser."
+
+"A diferença é: eu não tenho nada a ganhar te salvando. Ele tem tudo a perder se você descobrir."
+
+"Pense nisso."
+
+A sessão encerra.
+
+Você fica ali, no escuro, processando.
+
+O celular toca de novo. Rafael.
+
+"Onde você está? Estou preocupado."
+
+Você olha para a tela. Para o número. Para a realidade.
+
+E toma uma decisão.`,
+    choices: [
+      { text: 'Investigar sozinha antes de agir', nextNode: 'destiny1b_investigate' },
+      { text: 'Confrontar Rafael diretamente', nextNode: 'destiny_confrontation' }
+    ],
+    animation: 'fade-in',
+    sound: 'ambient'
+  },
+
+  destiny1b_investigate: {
+    id: 'destiny1b_investigate',
+    text: `Você passa dias investigando.
+
+Descobre: Helena realmente existiu. Morreu em acidente há 8 anos.
+
+Mas... o corpo nunca foi identificado positivamente.
+
+Você encontra mais. Outras ex-namoradas de Rafael. Padrões estranhos.
+
+Uma delas ainda está viva. Mora em outra cidade.
+
+Você a encontra. Clara.
+
+"Ele quase me matou", ela diz tremendo. "Mas eu escapei."
+
+"Por que não foi à polícia?"
+
+"Eu fui. Eles não acreditaram. Rafael é muito bom em parecer normal."
+
+"O que faço?"
+
+Clara te olha nos olhos.
+
+"Foge. Enquanto pode."`,
+    isEnding: true,
+    endingType: 'mysterious',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  destiny1b_reveal: {
+    id: 'destiny1b_reveal',
+    text: `"Me conta tudo. Agora."
+
+A Cartomante hesita. Então, cartas começam a aparecer em sequência.
+
+Cada carta revela uma história. Uma mulher. Uma morte "acidental".
+
+São 12 cartas. 12 histórias. 12 vítimas.
+
+"Rafael não é seu nome verdadeiro. Ele muda de identidade a cada 2-3 anos."
+
+"Você é a 13ª. E 13 é um número significativo para ele."
+
+"Hoje é o dia marcado. Se você não agir agora, será a próxima carta na minha coleção de tragédias."
+
+Você congela.
+
+"O que faço?"
+
+"Há uma pessoa que pode te ajudar. Lívia. Ela foi a única que conseguiu provas contra ele."
+
+Um endereço aparece na tela.`,
+    choices: [
+      { text: 'Ir encontrar Lívia', nextNode: 'truth2' },
+      { text: 'Ir à polícia com as informações', nextNode: 'destiny1b_police' }
+    ],
+    animation: 'scale-in',
+    sound: 'heartbeat'
+  },
+
   destiny1a: {
     id: 'destiny1a',
     text: `Você fecha o navegador com força. O coração bate acelerado.
@@ -608,6 +822,333 @@ Você ouve Rafael chegando. A voz sussurra: "Não deixe ele saber que falamos."`
     sound: 'heartbeat'
   },
 
+  destiny1a2: {
+    id: 'destiny1a2',
+    text: `Você finge atender outra ligação e vai para o banheiro.
+
+"Fala rápido", você sussurra.
+
+"Rafael tem um passado. Um passado que ele esconde de todas. As cartas me mostraram."
+
+"Que passado?"
+
+"Três mulheres antes de você. Todas 'desapareceram'. A polícia nunca encontrou nada. Ele é muito cuidadoso."
+
+"Como você sabe disso?"
+
+"Porque eu fui a primeira. A que escapou. Há 10 anos."
+
+Você ouve Rafael batendo na porta. "Está tudo bem aí?"
+
+"Preciso ir", você sussurra.
+
+"Escuta: no porão dele há provas. Encontre-as antes que seja tarde."
+
+A ligação cai.`,
+    choices: [
+      { text: 'Investigar o porão esta noite', nextNode: 'destiny_basement' },
+      { text: 'Fingir que nada aconteceu por enquanto', nextNode: 'destiny1a1' },
+      { text: 'Confrontar Rafael sobre Cassandra', nextNode: 'destiny_confrontation' }
+    ],
+    animation: 'fade-in',
+    sound: 'suspense'
+  },
+
+  destiny_escape: {
+    id: 'destiny_escape',
+    text: `Você corre. Não pega nada. Apenas corre.
+
+A porta. A escada. A rua.
+
+Rafael grita seu nome atrás de você. Mas você não para.
+
+Você corre até não conseguir mais respirar.
+
+Em um hotel barato, você se esconde. Paga em dinheiro. Nome falso.
+
+Três dias depois, você lê no jornal: "Homem preso após tentativa de sequestro."
+
+É Rafael. Tentou outra mulher. Mas ela gritou. Vizinhos chamaram a polícia.
+
+Na casa dele, encontraram evidências de anos de crimes.
+
+Você escapou. Por pouco.
+
+Mas escapou.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  destiny_confrontation: {
+    id: 'destiny_confrontation',
+    text: `"Quem é Cassandra, Rafael?"
+
+O rosto dele congela. Por um segundo apenas. Mas você viu.
+
+"Quem?"
+
+"Não finge. Eu sei sobre as outras."
+
+Rafael se senta. Suspira.
+
+"Cassandra é... uma ex. Obcecada. Ela cria histórias sobre mim."
+
+"E as mulheres que desapareceram?"
+
+Ele te olha. Há algo diferente nos olhos dele agora.
+
+"Você andou investigando."
+
+Não é uma pergunta.
+
+"Eu precisava saber."
+
+Rafael se levanta. Lentamente.
+
+"E agora que sabe... o que pretende fazer?"`,
+    choices: [
+      { text: 'Dizer que vai embora', nextNode: 'destiny_confrontation_leave' },
+      { text: 'Blefar dizendo que a polícia já sabe', nextNode: 'destiny_confrontation_bluff' },
+      { text: 'Tentar fugir', nextNode: 'destiny_escape' }
+    ],
+    animation: 'scale-in',
+    sound: 'heartbeat'
+  },
+
+  destiny_confrontation_leave: {
+    id: 'destiny_confrontation_leave',
+    text: `"Eu vou embora. Não quero mais isso."
+
+Rafael bloqueia a porta.
+
+"Você não pode ir. Não agora. Não depois de saber."
+
+"Rafael, me deixa passar."
+
+"Eu te amo. Demais. É por isso que..."
+
+Ele não completa.
+
+"Por isso que o quê, Rafael?"
+
+Lágrimas escorrem pelo rosto dele.
+
+"Por isso que eu não posso deixar você ir. Nunca."
+
+Você olha para a janela. Para a porta. Para ele.
+
+E toma uma decisão que vai mudar tudo.`,
+    choices: [
+      { text: 'Pular pela janela', nextNode: 'destiny_window_jump' },
+      { text: 'Gritar por socorro', nextNode: 'destiny_scream' }
+    ],
+    animation: 'fade-in',
+    sound: 'heartbeat'
+  },
+
+  destiny_window_jump: {
+    id: 'destiny_window_jump',
+    text: `Você corre para a janela. Rafael vem atrás.
+
+O vidro estilhaça. Você cai.
+
+Primeiro andar. Dor. Mas você está viva.
+
+Você se levanta. Corre. Grita.
+
+Vizinhos aparecem. Chamam a polícia.
+
+Rafael é preso tentando fugir pela porta dos fundos.
+
+No julgamento, você testemunha. Com Cassandra. Com outras sobreviventes.
+
+Rafael é condenado.
+
+Você ganhou cicatrizes. Mas também ganhou liberdade.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  destiny_confrontation_bluff: {
+    id: 'destiny_confrontation_bluff',
+    text: `"A polícia já sabe de tudo. Se algo me acontecer, eles vêm direto aqui."
+
+Rafael para. Estuda seu rosto.
+
+"Você está mentindo."
+
+"Quer arriscar?"
+
+Um momento de silêncio eterno.
+
+Então Rafael recua. Abre a porta.
+
+"Vai embora então. Mas lembra: eu te amei de verdade."
+
+Você não olha para trás.
+
+Na delegacia, você conta tudo. Mas sem provas, não podem prendê-lo.
+
+Você se muda de cidade. Muda de vida.
+
+Rafael nunca é preso. Mas você sobreviveu.
+
+Às vezes, sobreviver é a única vitória possível.`,
+    isEnding: true,
+    endingType: 'mysterious',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  destiny_scream: {
+    id: 'destiny_scream',
+    text: `"SOCORRO! ALGUÉM ME AJUDA!"
+
+Sua voz ecoa pela casa. Pela rua.
+
+Rafael tenta te calar mas você continua gritando.
+
+Vizinhos ouvem. Luzes se acendem.
+
+"O que está acontecendo aí?", alguém grita.
+
+Rafael solta você. "Não é nada! Só uma discussão!"
+
+"EU QUERO SAIR! ELE NÃO ME DEIXA!", você grita mais alto.
+
+Sirenes ao longe.
+
+Rafael olha para você com ódio. Mas também com derrota.
+
+"Você arruinou tudo."
+
+A polícia chega. Você está segura.
+
+Rafael é levado para interrogatório. E nunca mais volta.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  destiny_talk_livia: {
+    id: 'destiny_talk_livia',
+    text: `"Espera. Não quero brigar. Me conta o que está acontecendo."
+
+Lívia baixa a faca. Hesita.
+
+"Você... quer ouvir?"
+
+"Sim. Sem julgamentos."
+
+Ela se senta no chão do porão. Você se senta também.
+
+"Eu namorei Rafael há 4 anos. Ele era perfeito. Até que não era mais."
+
+"Descobri fotos. De outras mulheres. Algumas... mortas."
+
+"Quando confrontei ele, ele tentou me matar. Fingiu que foi suicídio. Mas eu sobrevivi."
+
+"Desde então, moro aqui. No porão dele. Documentando. Esperando o momento certo."
+
+"O momento para quê?"
+
+Lívia sorri. Um sorriso triste.
+
+"Para salvá-la. Como ninguém me salvou."`,
+    choices: [
+      { text: 'Trabalhar com ela para expor Rafael', nextNode: 'destiny_work_together' },
+      { text: 'Chamar a polícia imediatamente', nextNode: 'destiny_police_now' }
+    ],
+    animation: 'fade-in',
+    sound: 'ambient'
+  },
+
+  destiny_work_together: {
+    id: 'destiny_work_together',
+    text: `Vocês duas planejam juntas.
+
+Lívia tem anos de evidências. Fotos. Gravações. Um diário completo.
+
+Vocês levam tudo para a polícia federal.
+
+A investigação é rápida. As provas, irrefutáveis.
+
+Rafael é preso em casa. Sem chance de escapar.
+
+No julgamento, vocês duas testemunham. Juntas.
+
+Rafael é condenado a prisão perpétua.
+
+Vocês se tornam amigas. Sobreviventes unidas.
+
+A dor nunca passa completamente. Mas vocês não estão mais sozinhas.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  destiny_police_now: {
+    id: 'destiny_police_now',
+    text: `Você liga para a polícia ali mesmo.
+
+"Há uma mulher desaparecida vivendo no porão. E um homem perigoso na casa."
+
+Sirenes em 10 minutos.
+
+Rafael é acordado pela polícia. Não tem tempo de reagir.
+
+Lívia é encontrada. Desnutrida. Traumatizada. Mas viva.
+
+As evidências no porão são suficientes para múltiplas acusações.
+
+Rafael nunca mais vê a luz do dia.
+
+Lívia recebe tratamento. Eventualmente, se recupera.
+
+Você salvou duas vidas aquela noite: a dela e a sua.`,
+    isEnding: true,
+    endingType: 'truth',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  destiny_livia_story: {
+    id: 'destiny_livia_story',
+    text: `Você baixa a faca. "Me conta tudo."
+
+Lívia respira fundo.
+
+"Eu era a noiva dele. Há 5 anos. Íamos casar."
+
+"Então descobri o diário. Os planos. As outras."
+
+"Quando confrontei ele, quase morri. Escapei por milagre."
+
+"Fingi minha morte. Mudei de identidade. Mas não consegui deixá-lo para trás."
+
+"Porque eu sabia que ele ia fazer de novo. Com outras."
+
+"Então eu vigiei. Documentei. Esperei."
+
+"E quando vi você... vi a mim mesma. Jovem. Apaixonada. Cega."
+
+Lágrimas escorrem pelo rosto dela.
+
+"Eu tinha que te salvar. Como ninguém me salvou."`,
+    choices: [
+      { text: 'Agradecer e planejar juntas', nextNode: 'destiny_work_together' },
+      { text: 'Ir à polícia agora com ela', nextNode: 'destiny_police_now' }
+    ],
+    animation: 'fade-in',
+    sound: 'ambient'
+  },
+
   destiny1a1: {
     id: 'destiny1a1',
     text: `Você desliga. Rafael entra com um sorriso e vinho.
@@ -632,6 +1173,128 @@ Rafael inclina a cabeça. "Quem te mandou mensagem?"`,
     ],
     animation: 'fade-in',
     sound: 'suspense'
+  },
+
+  destiny1a1_lie: {
+    id: 'destiny1a1_lie',
+    text: `"É do trabalho. Emergência de última hora."
+
+Rafael te olha por um longo momento.
+
+"Às 22h? Sua empresa não respeita seus funcionários."
+
+"É assim mesmo", você força um sorriso.
+
+Mas os olhos dele dizem que não acreditou.
+
+O resto da noite é estranho. Rafael fala pouco. Te observa muito.
+
+Quando você vai dormir, ele fica acordado. No celular. No escuro.
+
+Às 3h, você acorda com barulhos.
+
+Rafael não está na cama.
+
+Você ouve passos. No corredor. Aproximando-se.`,
+    choices: [
+      { text: 'Fingir que está dormindo', nextNode: 'destiny_pretend_sleep' },
+      { text: 'Confrontá-lo sobre o barulho', nextNode: 'destiny_confront_night' }
+    ],
+    animation: 'fade-in',
+    sound: 'heartbeat'
+  },
+
+  destiny_pretend_sleep: {
+    id: 'destiny_pretend_sleep',
+    text: `Você fecha os olhos. Controla a respiração.
+
+A porta abre. Silenciosamente.
+
+Você sente ele se aproximar. Parar ao lado da cama.
+
+Ele fica ali. Te observando. Por minutos.
+
+Então... ele sai.
+
+Você espera uma hora. Depois, silenciosamente, você pega seu celular e liga para a polícia.
+
+Sussurrando, explica a situação.
+
+Eles chegam ao amanhecer. Encontram Rafael no porão. Com cordas. Com fita.
+
+Ele estava se preparando.
+
+Você sobreviveu porque fingiu.`,
+    isEnding: true,
+    endingType: 'liberation',
+    animation: 'fade-out',
+    sound: 'ambient'
+  },
+
+  destiny_confront_night: {
+    id: 'destiny_confront_night',
+    text: `"Rafael? O que está fazendo?"
+
+Ele para no corredor. A luz está apagada.
+
+"Nada. Só... checando as portas."
+
+"Às 3h da manhã?"
+
+Silêncio.
+
+"Você deveria estar dormindo", ele diz. E há algo na voz dele.
+
+"Você está me assustando."
+
+"Não precisa ter medo. Se você ficar quieta. Se você não fizer perguntas."
+
+Seu sangue gela.
+
+"Mas você fez perguntas, não fez? Falou com Cassandra."
+
+Ele sabe.`,
+    choices: [
+      { text: 'Correr para a porta da frente', nextNode: 'destiny_escape' },
+      { text: 'Tentar raciocinar com ele', nextNode: 'destiny_reason_night' }
+    ],
+    animation: 'scale-in',
+    sound: 'heartbeat'
+  },
+
+  destiny_reason_night: {
+    id: 'destiny_reason_night',
+    text: `"Rafael, seja lá o que esteja acontecendo, podemos conversar. Como adultos."
+
+"Conversar?" Ele ri. Sem humor. "Conversas não mudam nada."
+
+"Eu te amo. Apesar de tudo."
+
+Ele para. Por um momento, há algo humano nos olhos dele.
+
+"Você me ama?"
+
+"Sim. E quero te ajudar. Mas você precisa me deixar."
+
+Lágrimas escorrem pelo rosto dele.
+
+"Eu não quero ser assim. Mas quando elas tentam ir embora... eu não consigo."
+
+"Desta vez você consegue. Por mim."
+
+Um longo silêncio.
+
+Ele se afasta. Abre a porta.
+
+"Vai. Antes que eu mude de ideia."
+
+Você não hesita. Corre.
+
+E nunca olha para trás.`,
+    isEnding: true,
+    endingType: 'mysterious',
+    animation: 'fade-out',
+    sound: 'ambient'
   },
 
   destiny1a1_show: {
